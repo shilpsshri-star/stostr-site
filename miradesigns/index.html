@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mira Designs</title>
+<style>
+  :root{
+    --ink:#2A1B3D;
+    --paper:#FAF7FC;
+    --surface:#FFFFFF;
+    --plum:#6B3FA0;
+    --coral:#F2765A;
+    --line:#E4DBEE;
+    --muted:#7C6E8C;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#F1EAF8;
+      --paper:#1C1424;
+      --surface:#251A2F;
+      --plum:#B992E8;
+      --coral:#F5977E;
+      --line:#3B2C49;
+      --muted:#B3A4C4;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#F1EAF8;--paper:#1C1424;--surface:#251A2F;--plum:#B992E8;
+    --coral:#F5977E;--line:#3B2C49;--muted:#B3A4C4;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--paper);color:var(--ink);font-family:"Work Sans",-apple-system,sans-serif;line-height:1.55;padding-inline:20px;}
+  .wrap{max-width:880px;margin:0 auto;}
+  h1,h2,h3{font-family:"Fraunces",serif;text-wrap:balance;}
+
+  header.hero{padding-block:56px 40px;text-align:center;}
+  .brandmark{font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--coral);margin-bottom:14px;}
+  header.hero h1{font-size:clamp(2.1rem,7vw,3.2rem);margin:0 0 14px;color:var(--plum);}
+  header.hero p{color:var(--muted);font-size:1.1rem;max-width:46ch;margin:0 auto;}
+
+  section{padding-block:36px;border-top:1px solid var(--line);}
+  section h2{font-size:1.4rem;margin:0 0 8px;color:var(--plum);}
+  section > .lede{color:var(--muted);margin:0 0 28px;max-width:56ch;}
+
+  .offer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+  .offer-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;}
+  .offer-card .cat-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--coral);margin-bottom:8px;display:block;}
+  .offer-card h3{font-size:1rem;margin:0 0 6px;font-family:"Work Sans",sans-serif;font-weight:600;}
+  .offer-card p{margin:0;font-size:0.9rem;color:var(--muted);}
+
+  .proof-note{
+    background:var(--surface);
+    border:1px dashed var(--line);
+    border-radius:12px;
+    padding:24px;
+    color:var(--muted);
+    font-size:0.92rem;
+    text-align:center;
+  }
+
+  .contact-box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:32px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;}
+  .contact-box .copy p{color:var(--muted);margin:8px 0 0;max-width:40ch;font-size:0.95rem;}
+  .email-copy{display:flex;align-items:center;gap:8px;font-family:"IBM Plex Mono",monospace;font-size:0.9rem;background:var(--paper);border:1px solid var(--line);padding:10px 14px;border-radius:8px;}
+  .email-copy button{background:none;border:none;color:var(--plum);cursor:pointer;font-family:inherit;font-size:0.8rem;font-weight:600;}
+
+  .steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
+  .steps li{display:flex;gap:12px;font-size:0.95rem;color:var(--muted);}
+  .steps li b{color:var(--ink);font-weight:600;}
+  .steps .n{font-family:"IBM Plex Mono",monospace;color:var(--coral);flex-shrink:0;}
+
+  footer{padding-block:32px 48px;color:var(--muted);font-size:0.82rem;text-align:center;}
+
+  @media (max-width:560px){.contact-box{flex-direction:column;align-items:flex-start;}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="brandmark">Brand &amp; design studio</div>
+    <h1>Mira Designs</h1>
+    <p>Posters, social graphics, product labels, and brand systems — designed to make your business look as good as it runs.</p>
+  </header>
+
+  <section>
+    <h2>What I can design for you</h2>
+    <p class="lede">Built in Canva, delivered ready to print or post.</p>
+    <div class="offer-grid">
+      <div class="offer-card">
+        <span class="cat-label">Marketing</span>
+        <h3>Posters &amp; Flyers</h3>
+        <p>Market-day signage, launch posters, event flyers — print-ready.</p>
+      </div>
+      <div class="offer-card">
+        <span class="cat-label">Social</span>
+        <h3>Social Media Graphics</h3>
+        <p>Post templates, story graphics, and a consistent feed look.</p>
+      </div>
+      <div class="offer-card">
+        <span class="cat-label">Product</span>
+        <h3>Label &amp; Packaging Design</h3>
+        <p>Product labels, stickers, and packaging that match your brand.</p>
+      </div>
+      <div class="offer-card">
+        <span class="cat-label">Identity</span>
+        <h3>Brand Starter Kit</h3>
+        <p>Logo direction, color palette, fonts, and reusable Canva templates.</p>
+      </div>
+      <div class="offer-card">
+        <span class="cat-label">Documents</span>
+        <h3>Guides &amp; Planning Materials</h3>
+        <p>Menus, price sheets, workbooks, and planning documents, designed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="proof">
+    <h2>Portfolio</h2>
+    <div class="proof-note">
+      Real client samples going up soon — check back shortly, or ask and I'll send examples directly.
+    </div>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <ul class="steps">
+      <li><span class="n">01</span><span><b>Email your project</b> — what you need, any existing branding, and a rough deadline.</span></li>
+      <li><span class="n">02</span><span><b>Get a quote &amp; timeline</b> — same-day reply, flat price up front.</span></li>
+      <li><span class="n">03</span><span><b>Review &amp; revise</b> — drafts shared for feedback before final files.</span></li>
+      <li><span class="n">04</span><span><b>Get your files</b> — print-ready and web-ready formats, plus the editable Canva source.</span></li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Start a project</h2>
+    <div class="contact-box">
+      <div class="copy">
+        <h3 style="margin:0;font-family:'Work Sans',sans-serif;font-size:1.05rem;">Email me what you need — I'll follow up same day.</h3>
+        <p>Online ordering for quick-turn designs is coming soon. For now, every project starts with an email.</p>
+      </div>
+      <div class="email-copy">
+        <span id="email-text">stostr.team@gmail.com</span>
+        <button onclick="copyEmail()" id="copy-btn">copy</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>Mira Designs &middot; a stostr.com/miradesigns site</footer>
+</div>
+
+<script>
+  function copyEmail(){
+    const text = document.getElementById('email-text').textContent;
+    const btn = document.getElementById('copy-btn');
+    navigator.clipboard.writeText(text).then(()=>{
+      btn.textContent = 'copied';
+      setTimeout(()=>{btn.textContent='copy';}, 1500);
+    }).catch(()=>{
+      btn.textContent = 'select & copy';
+    });
+  }
+</script>
+</body>
+</html>

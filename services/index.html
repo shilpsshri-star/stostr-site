@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stostr Services</title>
+<style>
+  :root{
+    --ink:#14181F;
+    --paper:#F4F5F2;
+    --surface:#FFFFFF;
+    --accent:#3452FF;
+    --accent-soft:#DCE2FF;
+    --line:#D8DBD3;
+    --muted:#5B6270;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#EDEEF2;
+      --paper:#101216;
+      --surface:#181B21;
+      --accent:#7C93FF;
+      --accent-soft:#232A4A;
+      --line:#2B2F38;
+      --muted:#9AA1AE;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#EDEEF2;
+    --paper:#101216;
+    --surface:#181B21;
+    --accent:#7C93FF;
+    --accent-soft:#232A4A;
+    --line:#2B2F38;
+    --muted:#9AA1AE;
+    color-scheme:dark;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height:1.5;
+    padding-inline:20px;
+  }
+  .wrap{max-width:920px;margin:0 auto;}
+
+  h1,h2,h3{
+    font-family:"Archivo", -apple-system, sans-serif;
+    text-wrap:balance;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    letter-spacing:0.02em;
+  }
+
+  nav{
+    position:sticky;
+    top:env(safe-area-inset-top,0px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-block:18px;
+    background:var(--paper);
+    z-index:10;
+    border-bottom:1px solid var(--line);
+  }
+  nav .brand{font-family:"Archivo",sans-serif;font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none;}
+  nav a.navlink{color:var(--muted);text-decoration:none;font-size:0.85rem;margin-left:20px;}
+  nav a.navlink:hover{color:var(--accent);}
+
+  header.hero{
+    padding-block:64px 48px;
+    max-width:640px;
+  }
+  .eyebrow{
+    font-size:0.78rem;
+    color:var(--accent);
+    text-transform:uppercase;
+    margin-bottom:14px;
+    display:inline-block;
+  }
+  header.hero h1{
+    font-size:clamp(2rem, 5vw, 2.9rem);
+    line-height:1.08;
+    margin:0 0 18px;
+  }
+  header.hero p{
+    color:var(--muted);
+    font-size:1.05rem;
+    max-width:52ch;
+    margin:0 0 28px;
+  }
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;
+    padding:12px 20px;
+    border-radius:8px;
+    font-size:0.9rem;
+    text-decoration:none;
+    font-weight:600;
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink);background:none;}
+
+  section{padding-block:40px;border-top:1px solid var(--line);}
+  section h2{font-size:1.5rem;margin:0 0 8px;}
+  section > .lede{color:var(--muted);margin:0 0 32px;max-width:56ch;}
+
+  .service-row{
+    display:grid;
+    grid-template-columns:56px 1fr;
+    gap:18px;
+    padding-block:22px;
+    border-bottom:1px solid var(--line);
+  }
+  .service-row:last-child{border-bottom:none;}
+  .service-row .num{
+    font-family:"IBM Plex Mono",monospace;
+    color:var(--accent);
+    font-size:0.85rem;
+    padding-top:3px;
+  }
+  .service-row h3{font-size:1.1rem;margin:0 0 6px;}
+  .service-row p{color:var(--muted);margin:0;font-size:0.95rem;max-width:60ch;}
+  .tag{
+    display:inline-block;
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.68rem;
+    color:var(--accent);
+    background:var(--accent-soft);
+    padding:2px 8px;
+    border-radius:5px;
+    margin-left:8px;
+    vertical-align:middle;
+    letter-spacing:0.02em;
+  }
+
+  .proof-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:16px;
+  }
+  .proof-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+  }
+  .proof-card img{
+    width:100%;
+    border-radius:8px;
+    border:1px solid var(--line);
+    margin-bottom:14px;
+    display:block;
+  }
+  .proof-card .mono{font-size:0.72rem;color:var(--muted);display:block;margin-bottom:10px;}
+  .proof-card h3{font-size:1.05rem;margin:0 0 8px;}
+  .proof-card p{color:var(--muted);font-size:0.92rem;margin:0 0 14px;flex-grow:1;}
+  .proof-card a{color:var(--accent);font-size:0.88rem;text-decoration:none;font-weight:600;}
+  .proof-card a:hover{text-decoration:underline;}
+  .proof-card .soon{
+    font-size:0.78rem;
+    color:var(--muted);
+    font-style:italic;
+  }
+
+  .contact-box{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:28px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:24px;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .contact-box p{color:var(--muted);margin:0;max-width:38ch;font-size:0.95rem;}
+  .email-copy{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.9rem;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:10px 14px;
+    border-radius:8px;
+  }
+  .email-copy button{
+    background:none;
+    border:none;
+    color:var(--accent);
+    cursor:pointer;
+    font-family:inherit;
+    font-size:0.8rem;
+    font-weight:600;
+  }
+
+  footer{
+    padding-block:32px 48px;
+    color:var(--muted);
+    font-size:0.8rem;
+  }
+
+  @media (max-width:520px){
+    .contact-box{flex-direction:column;align-items:flex-start;}
+    nav a.navlink{margin-left:12px;}
+  }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Work+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <a class="brand" href="/">stostr</a>
+    <div>
+      <a class="navlink" href="#services">Services</a>
+      <a class="navlink" href="#proof">Proof of work</a>
+      <a class="navlink" href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <span class="eyebrow mono">// small business ops, built fast</span>
+    <h1>I set up the boring parts of your business so you can sell.</h1>
+    <p>Etsy shops, Square payments, small business websites, and AI-built tools — done by someone who builds her own shop this way first, then does it for you.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="#services">See services ↓</a>
+    </div>
+  </header>
+
+  <section id="services">
+    <h2>Services</h2>
+    <p class="lede">Each one below is something I've actually built — for my own shop first, then for clients.</p>
+
+    <div class="service-row">
+      <div class="num">01</div>
+      <div>
+        <h3>Etsy Shop SEO & Setup <span class="tag">from $29</span></h3>
+        <p>Title, 13 tags, description and alt text rewritten for search — the exact process I used to overhaul 27 live listings on my own shop. Also available for handmade sellers who need product photos turned into Etsy-ready listings (keyword research, SEO title, category + attributes, materials and colors, image alt text) — done by me, or by design partners like Mira Designs for the visual side.</p>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="num">02</div>
+      <div>
+        <h3>Square POS & Online Ordering <span class="tag">from $80</span></h3>
+        <p>Item catalog, payment options, pickup/delivery, and reporting set up end-to-end — built for a real homemade food business currently taking online orders.</p>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="num">03</div>
+      <div>
+        <h3>AI-Built Business Tools <span class="tag">from $95</span></h3>
+        <p>Custom internal tools built with Claude — listing managers, order trackers, content pipelines. Not a chatbot demo: real, deployed, working software.</p>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="num">04</div>
+      <div>
+        <h3>Small Business Websites <span class="tag">from $500</span></h3>
+        <p>A clean, working site — pages, branding, contact form — for a business that doesn't have one yet. Optional monthly upkeep once it's live.</p>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="num">05</div>
+      <div>
+        <h3>LLC Filing Assistance <span class="tag">new</span></h3>
+        <p>Help getting the paperwork filed with your state to form an LLC. This is filing support, not legal or tax advice — for anything beyond the forms, I'll point you to a lawyer or accountant.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="proof">
+    <h2>Proof of work</h2>
+    <p class="lede">Live, real, checkable — not mockups.</p>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <img src="proof-catalog.jpg" alt="Seller listing tool showing a product catalog with completion status">
+        <span class="mono">LIVE APP &middot; SELLER LISTING TOOLS</span>
+        <h3>Patti's Little Studio</h3>
+        <p>A full Etsy listing manager built with Claude: product photo → AI-generated title, description, 13 tags, materials, colors and alt text → review → push to Etsy as a draft. Deployed and in daily use.</p>
+        <a href="#contact">Ask for a walkthrough →</a>
+      </div>
+      <div class="proof-card">
+        <img src="proof-seo-tags.jpg" alt="Etsy listing tags panel showing 13 SEO-optimized search tags">
+        <span class="mono">SEO WORK</span>
+        <h3>Etsy Shop Overhaul</h3>
+        <p>27 listings rewritten for SEO — new titles, 13 tags, descriptions and alt text — on a real, active Etsy shop.</p>
+        <a href="#services">See the service →</a>
+      </div>
+      <div class="proof-card">
+        <img src="proof-square-sales.jpg" alt="Square commerce dashboard showing daily sales reporting">
+        <span class="mono">SQUARE SETUP</span>
+        <h3>Square Commerce Setup</h3>
+        <p>Product catalog, ordering, and reporting configured end-to-end — storefront, pickup, delivery and mobile ordering included.</p>
+        <a href="#services">See the service →</a>
+      </div>
+      <div class="proof-card">
+        <span class="mono">CLIENT WORK</span>
+        <h3>Radha's Kitchen</h3>
+        <p>Square setup, content calendar, and a branded ordering page for a homemade Indian food brand — from online ordering to weekly social posts.</p>
+        <a href="/radhashomemade">View the site →</a>
+      </div>
+      <div class="proof-card">
+        <span class="mono">CLIENT WORK</span>
+        <h3>Mira Designs</h3>
+        <p>Brand identity, posters, social media graphics, product labels, and Canva-built planning materials for a digital design studio.</p>
+        <p class="soon">Portfolio samples coming soon.</p>
+        <a href="/miradesigns">View the site →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Get in touch</h2>
+    <div class="contact-box">
+      <p>Email me directly with what you need — I'll follow up same day.</p>
+      <div class="email-copy">
+        <span id="email-text">stostr.team@gmail.com</span>
+        <button onclick="copyEmail()" id="copy-btn">copy</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    stostr — small business ops &amp; AI-built tools.
+  </footer>
+
+</div>
+
+<script>
+  function copyEmail(){
+    const text = document.getElementById('email-text').textContent;
+    const btn = document.getElementById('copy-btn');
+    navigator.clipboard.writeText(text).then(()=>{
+      btn.textContent = 'copied';
+      setTimeout(()=>{btn.textContent='copy';}, 1500);
+    }).catch(()=>{
+      btn.textContent = 'select & copy';
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radha's Homemade</title>
+<style>
+  :root{
+    --ink:#2B1810;
+    --paper:#FBF2E7;
+    --surface:#FFFFFF;
+    --spice-1:#B23A2E;
+    --spice-2:#E08E2B;
+    --turmeric:#D98A12;
+    --line:#E7D3B8;
+    --muted:#7A6350;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#F3E8DC;
+      --paper:#241512;
+      --surface:#301C17;
+      --spice-1:#E8776A;
+      --spice-2:#F2A94C;
+      --turmeric:#F2B33D;
+      --line:#4A3128;
+      --muted:#C4A98F;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#F3E8DC;--paper:#241512;--surface:#301C17;--spice-1:#E8776A;
+    --spice-2:#F2A94C;--turmeric:#F2B33D;--line:#4A3128;--muted:#C4A98F;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--paper);color:var(--ink);font-family:"Mulish",-apple-system,sans-serif;line-height:1.55;padding-inline:20px;}
+  .wrap{max-width:880px;margin:0 auto;}
+  h1,h2,h3{font-family:"Fraunces",serif;text-wrap:balance;}
+
+  header.hero{padding-block:56px 40px;text-align:center;}
+  .brandmark{font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--spice-2);margin-bottom:14px;}
+  header.hero h1{font-size:clamp(2.1rem,7vw,3.2rem);margin:0 0 14px;color:var(--spice-1);}
+  header.hero p{color:var(--muted);font-size:1.1rem;max-width:44ch;margin:0 auto;}
+
+  section{padding-block:32px;border-top:1px solid var(--line);}
+  section h2{font-size:1.3rem;margin:0 0 4px;color:var(--spice-1);}
+  section .cat-sub{color:var(--muted);font-size:0.82rem;margin:0 0 16px;}
+
+  .menu-list{margin:0;padding:0;list-style:none;}
+  .menu-list li{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:10px;
+    padding-block:8px;
+    border-bottom:1px dashed var(--line);
+    font-size:0.98rem;
+  }
+  .menu-list li:last-child{border-bottom:none;}
+  .menu-list .name{font-weight:700;}
+  .menu-list .price{font-family:"IBM Plex Mono",monospace;color:var(--spice-1);white-space:nowrap;}
+
+  .order-panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:32px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;}
+  .order-panel .copy p{color:var(--muted);margin:8px 0 18px;max-width:38ch;}
+  #qrcode{background:#fff;padding:10px;border-radius:10px;display:inline-block;}
+  .btn{display:inline-block;padding:12px 22px;border-radius:8px;font-size:0.92rem;text-decoration:none;font-weight:700;background:var(--spice-1);color:#fff;margin-right:10px;margin-bottom:10px;}
+  .btn-ghost{background:none;border:1px solid var(--line);color:var(--ink);}
+
+  .contact-line{color:var(--muted);font-size:0.92rem;margin-top:6px;}
+  .contact-line a{color:var(--spice-1);font-weight:600;text-decoration:none;}
+  .area-note{color:var(--muted);font-size:0.92rem;font-weight:700;}
+  footer{padding-block:32px 48px;color:var(--muted);font-size:0.82rem;text-align:center;}
+
+  @media (max-width:560px){.order-panel{grid-template-columns:1fr;text-align:center;} #qrcode{justify-self:center;}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Mulish:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="brandmark">Homemade &middot; Small batch &middot; No preservatives</div>
+    <h1>Radha's Homemade</h1>
+    <p>15-minute dinners made from family recipes and real spices — fully cooked curry sauces, ready-to-eat lentils, and snacks. Pickup in Katy, local delivery available.</p>
+  </header>
+
+  <section>
+    <h2>15 Minute Dinners</h2>
+    <p class="cat-sub">Fully cooked curry sauces &middot; Vegetarian &middot; Just add protein or veggies &middot; 16 oz pouches</p>
+    <ul class="menu-list">
+      <li><span class="name">Butter Masala</span><span class="price">$15.00</span></li>
+      <li><span class="name">Curry Masala</span><span class="price">$15.00</span></li>
+      <li><span class="name">Chickpea Masala</span><span class="price">$15.00</span></li>
+      <li><span class="name">Spinach Masala</span><span class="price">$17.00</span></li>
+      <li><span class="name">Eggplant Masala</span><span class="price">$15.00</span></li>
+      <li><span class="name">Meat Masala</span><span class="price">$15.00</span></li>
+      <li><span class="name">Fish Masala (+ Tamarind)</span><span class="price">$17.00</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Rice Mixes</h2>
+    <p class="cat-sub">Savory Indian rice mix &middot; Add water &amp; cook in ~12 minutes</p>
+    <ul class="menu-list">
+      <li><span class="name">Cumin-Spiced Rice</span><span class="price">$5.00</span></li>
+      <li><span class="name">Turmeric Coconut Rice</span><span class="price">$5.00</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Lentil Curries</h2>
+    <p class="cat-sub">Ready to eat &middot; Thaw &amp; serve &middot; Add water for a hearty lentil soup</p>
+    <ul class="menu-list">
+      <li><span class="name">Five-Lentil Dal</span><span class="price">$15.00</span></li>
+      <li><span class="name">Kidney Beans Masala</span><span class="price">$15.00</span></li>
+      <li><span class="name">Chana Masala</span><span class="price">$15.00</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Chutneys &amp; Savory Patties</h2>
+    <p class="cat-sub">Savory &middot; Ready to eat</p>
+    <ul class="menu-list">
+      <li><span class="name">Tomato Peanut Chutney</span><span class="price">$15.00</span></li>
+      <li><span class="name">Cilantro Coconut Chutney</span><span class="price">$15.00</span></li>
+      <li><span class="name">Chipotle Black Bean Patties (2ct)</span><span class="price">$8.00</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Snacks &amp; Drinks</h2>
+    <p class="cat-sub">Crispy &middot; Savory &middot; Ready to eat</p>
+    <ul class="menu-list">
+      <li><span class="name">Protein Bites (Nuts &amp; Dates)</span><span class="price">$10.00</span></li>
+      <li><span class="name">Mixture</span><span class="price">$10.00</span></li>
+      <li><span class="name">Lentil Ribbon Chips</span><span class="price">$10.00</span></li>
+      <li><span class="name">Samosa (Potato) (4ct)</span><span class="price">$10.00</span></li>
+      <li><span class="name">Mango Lassi</span><span class="price">$10.00</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Order for pickup or delivery</h2>
+    <p class="cat-sub" style="margin-bottom:20px;">Scan or tap to call/text and place an order.</p>
+    <div class="order-panel">
+      <div class="copy">
+        <p class="area-note">📍 Katy pickup &middot; Local delivery available</p>
+        <a class="btn" id="order-link" href="https://wa.me/18324771643" target="_blank" rel="noopener">Order on WhatsApp →</a>
+        <a class="btn btn-ghost" href="tel:+18324771643">Call / text</a>
+        <a class="btn btn-ghost" href="https://instagram.com/radhaskitchen4u" target="_blank" rel="noopener">@radhaskitchen4u</a>
+        <p class="contact-line">Or reach out directly: <a href="tel:+18324771643">832.477.1643</a></p>
+      </div>
+      <div id="qrcode"></div>
+    </div>
+  </section>
+
+  <footer>Radha's Homemade &middot; a stostr.com/radhashomemade site</footer>
+</div>
+
+<script>
+  // TODO: swap in Radha's real online ordering link (e.g. Square) once available.
+  // Defaulting to WhatsApp since it's a real, working order channel and needs no new info.
+  const orderUrl = "https://wa.me/18324771643";
+  try{
+    new QRCode(document.getElementById("qrcode"), {
+      text: orderUrl,
+      width: 128,
+      height: 128,
+      colorDark: "#2B1810",
+      colorLight: "#ffffff"
+    });
+  }catch(e){}
+</script>
+</body>
+</html>
