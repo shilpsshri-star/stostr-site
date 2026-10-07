@@ -115,6 +115,22 @@
   .who.ai{background:var(--ink);color:var(--paper);}
   .who.you{border:1px solid var(--gold);color:var(--gold);}
   .loop-key{font-size:0.78rem;color:var(--muted);margin:-18px 0 26px;}
+  .funnel{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;}
+  .funnel .st p{margin:0;}
+  .funnel .st .l{font-size:0.74rem;font-weight:700;color:var(--muted);}
+  .funnel .st .v{font-size:1.5rem;font-weight:800;font-variant-numeric:tabular-nums;}
+  .funnel .rt{flex:0 1 150px;text-align:center;font-size:0.7rem;color:var(--muted);line-height:1.25;position:relative;padding-bottom:10px;}
+  .funnel .rt::after{content:"";position:absolute;left:8px;right:8px;bottom:0;height:6px;background:linear-gradient(var(--line),var(--line)) center/100% 1.5px no-repeat;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 50%,calc(100% - 6px) 100%,0 100%);}
+  .funnel .rt::after{background:linear-gradient(90deg,var(--line),var(--mark));height:2px;bottom:2px;clip-path:none;border-radius:2px;}
+  .funnel .rt b{display:block;font-size:0.92rem;color:var(--orchid);font-variant-numeric:tabular-nums;}
+  .funnel-title{font-size:0.8rem;font-weight:700;color:var(--muted);margin:22px 0 0;}
+  .insight{margin-top:14px;border:1.5px solid var(--ink);border-radius:14px;padding:16px 18px;background:var(--surface);}
+  .insight .h{display:flex;justify-content:space-between;gap:10px;font-size:0.78rem;font-weight:700;color:var(--muted);margin:0 0 6px;}
+  .insight p.t{margin:0;}
+  @media (max-width:640px){
+    .funnel{display:grid;grid-template-columns:1fr auto 1fr;row-gap:16px;}
+    .funnel .rt.mid{grid-column:1 / -1;}
+  }
   .badge.won{background:var(--mark);color:#fff;}
   .badge.lost{background:var(--gold);color:#fff;}
   .badge.run{background:transparent;border:1px solid var(--mark);color:var(--orchid);}
@@ -298,6 +314,20 @@
         <div class="axis"><span data-a0></span><span data-a1></span></div>
       </div>
     </div>
+    <p class="funnel-title">The funnel: does posting turn into sales?</p>
+    <div class="funnel" id="funnel" aria-label="Funnel from posts to orders">
+      <div class="st"><p class="l">Posts</p><p class="v" data-f="posts">–</p></div>
+      <div class="rt"><b data-r="cpp">–</b>clicks per post</div>
+      <div class="st"><p class="l">Link clicks</p><p class="v" data-f="clicks">–</p></div>
+      <div class="rt mid"><b data-r="share">–</b>of visits from social clicks (est.)</div>
+      <div class="st"><p class="l">Etsy visits</p><p class="v" data-f="visits">–</p></div>
+      <div class="rt"><b data-r="conv">–</b>visit-to-order rate</div>
+      <div class="st"><p class="l">Orders</p><p class="v" data-f="orders">–</p></div>
+    </div>
+    <div class="insight" id="insight" hidden>
+      <p class="h"><span><i class="who ai" style="margin:0 6px 0 0">AI</i>The agent's read this week</span><span data-i="d"></span></p>
+      <p class="t" data-i="t"></p>
+    </div>
     <div class="finish">
       <p class="label">Orders so far: the finish line</p>
       <span class="value" id="k-orders">–</span>
@@ -346,7 +376,8 @@
   // Snapshot used if the live sheet can't be reached.
   const SNAPSHOT = {
     metrics:{quality:0,dist:0,clicks:0,views:1,orders:0},
-    trend:[{d:"2026-10-07",views:1,clicks:0,posts:0,quality:0,orders:0}],
+    trend:[{d:"2026-10-07",views:1,clicks:0,posts:0,quality:0,orders:0,visits:3}],
+    insight:{t:"Day 1 baseline: 1 Etsy view, 3 visits, 0 link clicks. The first scheduled posts go out this week, so link clicks per post is the number to watch. Suggested next: approve E-003 (US price ladder and bundle title) so it runs before Diwali shopping peaks on 28 Oct.",d:"2026-10-07"},
     exps:[
       ["E-001","Filling all 13 tags with buyer search terms will get the first Etsy search views","Etsy views (7-day total)","0","","",""],
       ["E-002","3 posts a week linking to listings will bring the first visits from Instagram/Facebook","Etsy visits from social","0","","",""],
@@ -384,11 +415,13 @@
   function fromRows(rows){
     const get=label=>{const r=rows.find(r=>(r[0]||"").trim()===label);return r?num(r[1]):0;};
     const out={metrics:{quality:get("Listing quality"),dist:get("Distribution"),clicks:get("Social link clicks"),views:get("Etsy views"),orders:get("Orders")},trend:[],exps:[],live:true};
+    const ir=rows.find(r=>(r[0]||"").trim()==="Agent insight");
+    out.insight=ir&&ir[1]?{t:ir[1],d:iso(ir[2])}:null;
     const hi=rows.findIndex(r=>(r[0]||"").trim()==="Date");
     if(hi>=0){
       for(let i=hi+1;i<rows.length;i++){
         const r=rows[i];const d=iso(r[0]);
-        if(d) out.trend.push({d,views:num(r[1]),clicks:num(r[2]),posts:num(r[3]),quality:num(r[4]),orders:num(r[5])});
+        if(d) out.trend.push({d,views:num(r[1]),clicks:num(r[2]),posts:num(r[3]),quality:num(r[4]),orders:num(r[5]),visits:num(r[6])});
         const e=(r[7]||"").trim();
         if(/^E-\d+/.test(e)) out.exps.push([e,r[8]||"",r[9]||"",r[10]||"",r[11]||"",r[12]||"",r[13]||""]);
       }
@@ -465,6 +498,15 @@
     bars(document.getElementById("k-dist"),t,"posts","posts");
     bars(document.getElementById("k-clicks"),t,"clicks","clicks");
     bars(document.getElementById("k-views"),t,"views","views");
+    const tot=k=>t.reduce((s,r)=>s+(r[k]||0),0);
+    const F={posts:tot("posts"),clicks:tot("clicks"),visits:tot("visits"),orders:tot("orders")};
+    for(const k in F) document.querySelector(`[data-f="${k}"]`).textContent=F[k].toLocaleString();
+    const rate=(a,b,pct)=>b?(pct?(Math.round(a/b*1000)/10)+"%":(Math.round(a/b*10)/10)):"–";
+    document.querySelector('[data-r="cpp"]').textContent=rate(F.clicks,F.posts);
+    document.querySelector('[data-r="share"]').textContent=F.visits?(Math.min(100,Math.round(F.clicks/F.visits*100))+"%"):"–";
+    document.querySelector('[data-r="conv"]').textContent=rate(F.orders,F.visits,true);
+    const ins=document.getElementById("insight");
+    if(data.insight&&data.insight.t){ins.hidden=false;ins.querySelector('[data-i="t"]').textContent=data.insight.t;ins.querySelector('[data-i="d"]').textContent=data.insight.d?short(data.insight.d):"";}
     if(t.length){
       const today=Math.max(toT(t[t.length-1].d),toT(fromT(Date.now())));
       const day=Math.round((today-toT(t[0].d))/DAY)+1;
