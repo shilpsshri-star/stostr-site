@@ -168,7 +168,7 @@
   <section id="menu">
     <p class="eyebrow">What we make</p>
     <h2>Dinner, done in 15 minutes</h2>
-    <p class="intro">Everything is cooked the way we cook at home. Message us for this week's menu, prices and pickup times.</p>
+    <p class="intro">Everything is cooked the way we cook at home. Call or text us for this week's menu, prices and pickup times.</p>
     <div class="menu">
       <article class="cat feature">
         <h3>15-Minute Dinners</h3>
@@ -207,11 +207,11 @@
       <div>
         <h2 style="margin:0">Order for pickup or delivery</h2>
         <p class="area-note">📍 Katy pickup · Local delivery available</p>
-        <p>Message us on WhatsApp with what you'd like and we'll confirm the total and a pickup time.</p>
-        <a class="btn" href="https://wa.me/18324771643" target="_blank" rel="noopener">Order on WhatsApp →</a>
+        <p>Pay on Cash App, then call or text us your order and a pickup time.</p>
+        <a class="btn" href="https://cash.app/$radhaskitchen4u" target="_blank" rel="noopener">Order on Cash App →</a>
         <a class="btn btn-ghost" href="tel:+18324771643">Call / text</a>
       </div>
-      <div id="qrcode" aria-label="QR code to order on WhatsApp"></div>
+      <div id="qrcode" aria-label="QR code to order on Cash App"></div>
     </div>
   </section>
 
@@ -300,7 +300,7 @@
 <script>
 (function(){
   // Published CSV of the tracker's Dashboard tab. Empty = use the snapshot below.
-  const CSV = "";
+  const CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSrCyy-91-f5PEeDUqsb4qAQB16QcEY8ZLk396Q6_Ex9r857TYuZIDvOKnMZRRCa71RaAMFn_dTkFEk/pub?gid=103&single=true&output=csv";
 
   const SNAPSHOT = {
     metrics:{dist:4,views:107,inter:7,clicks:0,followers:156,orders:0},
@@ -462,7 +462,7 @@
     .catch(()=>{});
 
   try{
-    new QRCode(document.getElementById("qrcode"),{text:"https://wa.me/18324771643",width:128,height:128,colorDark:"#2B1810",colorLight:"#ffffff"});
+    new QRCode(document.getElementById("qrcode"),{text:"https://cash.app/$radhaskitchen4u",width:128,height:128,colorDark:"#2B1810",colorLight:"#ffffff"});
   }catch(e){}
 })();
 </script>
