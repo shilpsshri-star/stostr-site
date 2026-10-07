@@ -3,166 +3,428 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mira Designs</title>
+<title>Made With Mira Studio</title>
+<meta name="description" content="Made With Mira Studio: posters, social graphics, labels, brand kits and planners, plus a live growth case study from zero to first sales.">
 <style>
   :root{
-    --ink:#2A1B3D;
-    --paper:#FAF7FC;
+    --ink:#1A1220;
+    --paper:#FFFBF4;
     --surface:#FFFFFF;
-    --plum:#6B3FA0;
-    --coral:#F2765A;
-    --line:#E4DBEE;
-    --muted:#7C6E8C;
+    --muted:#6B5E6E;
+    --line:#EFE3EA;
+    --gold:#7A4900;
+    --orchid:#8E2F9C;
+    --mark:#9B3AA8;
+    --wash-1:#FFF7AD;
+    --wash-2:#FFD0D3;
+    --wash-3:#FFA9F9;
+    --chip:#F7EEF6;
     color-scheme:light;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --ink:#F1EAF8;
-      --paper:#1C1424;
-      --surface:#251A2F;
-      --plum:#B992E8;
-      --coral:#F5977E;
-      --line:#3B2C49;
-      --muted:#B3A4C4;
+      --ink:#F6EEF8;--paper:#1A1320;--surface:#241A2C;--muted:#BBAAC0;--line:#3A2C44;
+      --gold:#E2B562;--orchid:#E59BEF;--mark:#C066CC;
+      --wash-1:#4A4318;--wash-2:#4A2A33;--wash-3:#4A2450;--chip:#2E2236;
       color-scheme:dark;
     }
   }
   :root[data-theme="dark"]{
-    --ink:#F1EAF8;--paper:#1C1424;--surface:#251A2F;--plum:#B992E8;
-    --coral:#F5977E;--line:#3B2C49;--muted:#B3A4C4;
+    --ink:#F6EEF8;--paper:#1A1320;--surface:#241A2C;--muted:#BBAAC0;--line:#3A2C44;
+    --gold:#E2B562;--orchid:#E59BEF;--mark:#C066CC;
+    --wash-1:#4A4318;--wash-2:#4A2A33;--wash-3:#4A2450;--chip:#2E2236;
     color-scheme:dark;
   }
   *{box-sizing:border-box;}
-  body{background:var(--paper);color:var(--ink);font-family:"Work Sans",-apple-system,sans-serif;line-height:1.55;padding-inline:20px;}
-  .wrap{max-width:880px;margin:0 auto;}
-  h1,h2,h3{font-family:"Fraunces",serif;text-wrap:balance;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Open Sans",-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.55;}
+  a{color:var(--orchid);}
+  .wrap{max-width:960px;margin:0 auto;padding-inline:20px;}
+  h1,h2,h3{line-height:1.2;text-wrap:balance;}
+  img{max-width:100%;display:block;}
 
-  header.hero{padding-block:56px 40px;text-align:center;}
-  .brandmark{font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--coral);margin-bottom:14px;}
-  header.hero h1{font-size:clamp(2.1rem,7vw,3.2rem);margin:0 0 14px;color:var(--plum);}
-  header.hero p{color:var(--muted);font-size:1.1rem;max-width:46ch;margin:0 auto;}
+  nav.top{display:flex;justify-content:space-between;align-items:center;padding-block:16px;font-size:0.85rem;}
+  nav.top a{color:var(--muted);text-decoration:none;}
+  nav.top a:hover{color:var(--orchid);}
 
-  section{padding-block:36px;border-top:1px solid var(--line);}
-  section h2{font-size:1.4rem;margin:0 0 8px;color:var(--plum);}
-  section > .lede{color:var(--muted);margin:0 0 28px;max-width:56ch;}
+  /* Hero: the logo's gradient */
+  .hero{background:linear-gradient(90deg,var(--wash-1),var(--wash-2) 50%,var(--wash-3));}
+  .hero .wrap{padding-block:64px 56px;text-align:center;}
+  .wordmark{font-weight:800;font-size:clamp(2.3rem,8vw,4rem);letter-spacing:-0.01em;margin:0;}
+  .studio{font-weight:800;letter-spacing:0.28em;color:var(--gold);font-size:clamp(0.9rem,2.4vw,1.15rem);margin:6px 0 22px;}
+  .hero p.lede{max-width:52ch;margin:0 auto 26px;font-size:1.08rem;}
+  .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn{display:inline-block;padding:11px 20px;border-radius:999px;font-weight:700;font-size:0.92rem;text-decoration:none;}
+  .btn.primary{background:var(--ink);color:var(--paper);}
+  .btn.ghost{border:1.5px solid var(--ink);color:var(--ink);}
 
-  .offer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
-  .offer-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;}
-  .offer-card .cat-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--coral);margin-bottom:8px;display:block;}
-  .offer-card h3{font-size:1rem;margin:0 0 6px;font-family:"Work Sans",sans-serif;font-weight:600;}
-  .offer-card p{margin:0;font-size:0.9rem;color:var(--muted);}
+  section{padding-block:52px;border-top:1px solid var(--line);}
+  section:first-of-type{border-top:none;}
+  .eyebrow{font-size:0.74rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin:0 0 8px;}
+  section h2{font-size:clamp(1.5rem,4vw,2rem);margin:0 0 10px;}
+  section .intro{color:var(--muted);max-width:60ch;margin:0 0 30px;}
 
-  .proof-note{
-    background:var(--surface);
-    border:1px dashed var(--line);
-    border-radius:12px;
-    padding:24px;
-    color:var(--muted);
-    font-size:0.92rem;
-    text-align:center;
-  }
+  /* Services with proof */
+  .service{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:16px;}
+  .service-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:14px;}
+  .service h3{margin:0;font-size:1.15rem;}
+  .service .what{color:var(--muted);margin:4px 0 0;font-size:0.94rem;max-width:56ch;}
+  .proof-tag{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--chip);color:var(--muted);padding:4px 10px;border-radius:999px;white-space:nowrap;}
+  .strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:12px;}
+  .strip figure{margin:0;}
+  .strip img{border-radius:6px;box-shadow:0 4px 14px rgba(40,20,40,0.12);aspect-ratio:0.71;object-fit:cover;width:100%;}
+  .strip figcaption{font-size:0.76rem;color:var(--muted);margin-top:6px;text-align:center;}
+  .posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
+  .posts img{border-radius:10px;aspect-ratio:0.8;object-fit:cover;width:100%;border:1px solid var(--line);}
+  .kit{display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:center;}
+  .kit img{border-radius:12px;border:1px solid var(--line);}
+  .swatches{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px;}
+  .sw{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--muted);font-family:"IBM Plex Mono",monospace;}
+  .sw i{width:28px;height:28px;border-radius:50%;display:inline-block;border:1px solid var(--line);}
+  .type-sample{font-size:0.9rem;color:var(--muted);}
+  .type-sample b{color:var(--ink);font-weight:800;font-size:1.1rem;}
+  .more-links{margin-top:14px;font-size:0.88rem;}
+  .small-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+  .small-grid .service{margin:0;}
 
-  .contact-box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:32px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;}
-  .contact-box .copy p{color:var(--muted);margin:8px 0 0;max-width:40ch;font-size:0.95rem;}
-  .email-copy{display:flex;align-items:center;gap:8px;font-family:"IBM Plex Mono",monospace;font-size:0.9rem;background:var(--paper);border:1px solid var(--line);padding:10px 14px;border-radius:8px;}
-  .email-copy button{background:none;border:none;color:var(--plum);cursor:pointer;font-family:inherit;font-size:0.8rem;font-weight:600;}
+  /* Growth case study */
+  .loop{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 28px;font-size:0.86rem;}
+  .loop span{background:var(--chip);padding:6px 12px;border-radius:999px;font-weight:600;}
+  .loop .human{background:transparent;border:1.5px solid var(--gold);color:var(--gold);}
+  .loop em{color:var(--muted);font-style:normal;}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
+  .kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px;position:relative;}
+  .kpi .label{font-size:0.8rem;font-weight:700;color:var(--muted);margin:0;}
+  .kpi .value{font-size:2.2rem;font-weight:800;margin:4px 0 2px;font-variant-numeric:tabular-nums;}
+  .kpi .sub{font-size:0.78rem;color:var(--muted);margin:0 0 10px;}
+  .kpi svg{width:100%;height:46px;display:block;overflow:visible;}
+  .meter{height:8px;background:var(--chip);border-radius:999px;overflow:hidden;margin-top:14px;}
+  .meter b{display:block;height:100%;background:var(--mark);border-radius:999px;}
+  .finish{margin-top:14px;background:linear-gradient(90deg,var(--wash-1),var(--wash-2) 50%,var(--wash-3));border-radius:14px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+  .finish .label{font-weight:700;margin:0;}
+  .finish .value{font-size:2rem;font-weight:800;font-variant-numeric:tabular-nums;}
+  .tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--paper);font-size:0.74rem;padding:4px 8px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-120%);opacity:0;transition:opacity .1s;}
+  .exp{width:100%;border-collapse:collapse;font-size:0.88rem;margin-top:8px;}
+  .exp th{text-align:left;font-size:0.74rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);font-weight:700;padding:8px;border-bottom:1px solid var(--line);}
+  .exp td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top;}
+  .exp td.num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .badge{font-size:0.72rem;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--chip);white-space:nowrap;}
+  .table-wrap{overflow-x:auto;}
+  .data-note{font-size:0.78rem;color:var(--muted);margin-top:14px;}
+  h3.block{font-size:1.05rem;margin:36px 0 6px;}
 
   .steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
-  .steps li{display:flex;gap:12px;font-size:0.95rem;color:var(--muted);}
-  .steps li b{color:var(--ink);font-weight:600;}
-  .steps .n{font-family:"IBM Plex Mono",monospace;color:var(--coral);flex-shrink:0;}
+  .steps li{display:flex;gap:12px;color:var(--muted);}
+  .steps li b{color:var(--ink);}
+  .steps .n{font-family:"IBM Plex Mono",monospace;color:var(--gold);font-weight:500;flex-shrink:0;}
 
-  footer{padding-block:32px 48px;color:var(--muted);font-size:0.82rem;text-align:center;}
+  .contact-box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;}
+  .contact-box p{color:var(--muted);margin:6px 0 0;max-width:44ch;}
+  .email-copy{display:flex;align-items:center;gap:8px;font-family:"IBM Plex Mono",monospace;font-size:0.9rem;background:var(--paper);border:1px solid var(--line);padding:10px 14px;border-radius:8px;}
+  .email-copy button{background:none;border:none;color:var(--orchid);cursor:pointer;font:inherit;font-weight:600;font-size:0.8rem;}
+  footer{padding-block:28px 44px;color:var(--muted);font-size:0.82rem;text-align:center;}
 
-  @media (max-width:560px){.contact-box{flex-direction:column;align-items:flex-start;}}
+  @media (max-width:560px){
+    .strip{grid-template-columns:repeat(3,1fr);gap:10px;}
+    .posts{grid-template-columns:repeat(2,1fr);}
+    .kit{grid-template-columns:1fr;}
+    .kit img{max-width:140px;}
+  }
 </style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
 </head>
 <body>
+
 <div class="wrap">
-  <header class="hero">
-    <div class="brandmark">Brand &amp; design studio</div>
-    <h1>Mira Designs</h1>
-    <p>Posters, social graphics, product labels, and brand systems — designed to make your business look as good as it runs.</p>
-  </header>
+  <nav class="top">
+    <a href="/">← stostr</a>
+    <a href="https://www.instagram.com/madewithmirastudio" target="_blank" rel="noopener">@madewithmirastudio</a>
+  </nav>
+</div>
 
-  <section>
-    <h2>What I can design for you</h2>
-    <p class="lede">Built in Canva, delivered ready to print or post.</p>
-    <div class="offer-grid">
-      <div class="offer-card">
-        <span class="cat-label">Marketing</span>
+<header class="hero">
+  <div class="wrap">
+    <h1 class="wordmark">Made With Mira</h1>
+    <p class="studio">STUDIO</p>
+    <p class="lede">A brand and design studio for small businesses and families. Posters, social graphics, labels, brand kits and planners, designed in Canva and delivered ready to print or post.</p>
+    <div class="ctas">
+      <a class="btn primary" href="#contact">Start a project</a>
+      <a class="btn ghost" href="#growth">See the growth case study</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="services">
+    <p class="eyebrow">What I can design for you</p>
+    <h2>Every service, with proof</h2>
+    <p class="intro">Each piece below was designed for Mira's own shop first. You're seeing the styles, not the files: covers and post designs only.</p>
+
+    <article class="service">
+      <div class="service-head">
+        <div>
+          <h3>Guides &amp; Planning Materials</h3>
+          <p class="what">Planners, calendars, menus, price sheets and workbooks. One design system, many styles.</p>
+        </div>
+        <span class="proof-tag">7 styles live</span>
+      </div>
+      <div class="strip">
+        <figure><img src="img/uk-heritage.jpg" alt="Heritage style calendar cover, maroon with a gold mandala" loading="lazy"><figcaption>Heritage</figcaption></figure>
+        <figure><img src="img/uk-minimal.jpg" alt="Minimal style calendar cover, white with bold black type" loading="lazy"><figcaption>Minimal</figcaption></figure>
+        <figure><img src="img/uk-botanical.jpg" alt="Botanical style calendar cover, sage green" loading="lazy"><figcaption>Botanical</figcaption></figure>
+        <figure><img src="img/uk-mela.jpg" alt="Mela style calendar cover, bright pink" loading="lazy"><figcaption>Mela</figcaption></figure>
+        <figure><img src="img/us-maroon.jpg" alt="Classic maroon calendar cover" loading="lazy"><figcaption>Classic Maroon</figcaption></figure>
+        <figure><img src="img/us-blush.jpg" alt="Blush rose calendar cover" loading="lazy"><figcaption>Blush Rose</figcaption></figure>
+        <figure><img src="img/us-navy.jpg" alt="Midnight navy calendar cover" loading="lazy"><figcaption>Midnight Navy</figcaption></figure>
+      </div>
+      <p class="more-links">See them on <a href="https://www.etsy.com/shop/MadeWithMiraStudio" target="_blank" rel="noopener">Etsy</a>.</p>
+    </article>
+
+    <article class="service">
+      <div class="service-head">
+        <div>
+          <h3>Social Media Graphics</h3>
+          <p class="what">Carousels, post templates and story graphics with a consistent feed look, built to be scheduled.</p>
+        </div>
+        <span class="proof-tag">Scheduled this week</span>
+      </div>
+      <div class="posts">
+        <img src="img/post-colors.jpg" alt="Carousel cover: Maroon, blush or navy? Pick the color that fits your home" loading="lazy">
+        <img src="img/post-styles.jpg" alt="Carousel cover: Heritage, Minimal, Botanical or Mela, which one is your family?" loading="lazy">
+        <img src="img/post-phone.jpg" alt="Post: add every festival to the whole family's phones in one tap" loading="lazy">
+        <img src="img/post-inside.jpg" alt="Carousel cover: print it, hang it, or sync it to the whole family's phones" loading="lazy">
+      </div>
+      <p class="more-links">Follow along on <a href="https://www.instagram.com/madewithmirastudio" target="_blank" rel="noopener">Instagram</a>.</p>
+    </article>
+
+    <article class="service">
+      <div class="service-head">
+        <div>
+          <h3>Brand Starter Kit</h3>
+          <p class="what">Logo direction, colour palette, fonts and reusable Canva templates.</p>
+        </div>
+        <span class="proof-tag">Mira's own kit</span>
+      </div>
+      <div class="kit">
+        <img src="img/logo.jpg" alt="Made With Mira Studio logo on a yellow to pink gradient">
+        <div>
+          <div class="swatches">
+            <span class="sw"><i style="background:#FFF7AD"></i>Butter</span>
+            <span class="sw"><i style="background:#FFD0D3"></i>Blush</span>
+            <span class="sw"><i style="background:#FFA9F9"></i>Orchid</span>
+            <span class="sw"><i style="background:#7A4900"></i>Gold</span>
+            <span class="sw"><i style="background:#1A1220"></i>Ink</span>
+          </div>
+          <p class="type-sample"><b>Open Sans ExtraBold</b> for the wordmark, letter-spaced caps for the studio line.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="small-grid">
+      <article class="service">
         <h3>Posters &amp; Flyers</h3>
-        <p>Market-day signage, launch posters, event flyers — print-ready.</p>
-      </div>
-      <div class="offer-card">
-        <span class="cat-label">Social</span>
-        <h3>Social Media Graphics</h3>
-        <p>Post templates, story graphics, and a consistent feed look.</p>
-      </div>
-      <div class="offer-card">
-        <span class="cat-label">Product</span>
-        <h3>Label &amp; Packaging Design</h3>
-        <p>Product labels, stickers, and packaging that match your brand.</p>
-      </div>
-      <div class="offer-card">
-        <span class="cat-label">Identity</span>
-        <h3>Brand Starter Kit</h3>
-        <p>Logo direction, color palette, fonts, and reusable Canva templates.</p>
-      </div>
-      <div class="offer-card">
-        <span class="cat-label">Documents</span>
-        <h3>Guides &amp; Planning Materials</h3>
-        <p>Menus, price sheets, workbooks, and planning documents, designed.</p>
-      </div>
+        <p class="what">Market-day signage, launch posters and event flyers, print-ready.</p>
+        <p class="more-links"><a href="#contact">Ask for samples →</a></p>
+      </article>
+      <article class="service">
+        <h3>Labels &amp; Packaging</h3>
+        <p class="what">Product labels, stickers and packaging that match your brand.</p>
+        <p class="more-links"><a href="#contact">Ask for samples →</a></p>
+      </article>
     </div>
   </section>
 
-  <section id="proof">
-    <h2>Portfolio</h2>
-    <div class="proof-note">
-      Real client samples going up soon — check back shortly, or ask and I'll send examples directly.
+  <section id="growth">
+    <p class="eyebrow">Growth case study</p>
+    <h2>Zero to first sales</h2>
+    <p class="intro">Mira's Etsy shop launched with zero views. Instead of another stats dashboard, I run a weekly growth loop: an AI agent drafts content and proposes one change at a time, I approve it, it gets scheduled, and these numbers check whether it worked. Tracking started 7 October 2026.</p>
+
+    <div class="loop" aria-label="How the loop works">
+      <span>Plan</span><em>→</em><span>Design</span><em>→</em><span class="human">I approve</span><em>→</em><span>Schedule</span><em>→</em><span>Measure</span><em>→</em><span>Learn</span>
     </div>
+
+    <div class="kpis">
+      <div class="kpi" id="k-quality">
+        <p class="label">Listing quality</p>
+        <p class="value" data-v>–</p>
+        <p class="sub">listings fully optimized, of 8</p>
+        <div class="meter"><b style="width:0%"></b></div>
+      </div>
+      <div class="kpi" id="k-dist">
+        <p class="label">Distribution</p>
+        <p class="value" data-v>–</p>
+        <p class="sub">posts published</p>
+        <svg aria-hidden="true"></svg>
+      </div>
+      <div class="kpi" id="k-clicks">
+        <p class="label">Social link clicks</p>
+        <p class="value" data-v>–</p>
+        <p class="sub">from Instagram &amp; Facebook to Etsy</p>
+        <svg aria-hidden="true"></svg>
+      </div>
+      <div class="kpi" id="k-views">
+        <p class="label">Etsy views</p>
+        <p class="value" data-v>–</p>
+        <p class="sub">listing views since launch</p>
+        <svg aria-hidden="true"></svg>
+      </div>
+    </div>
+    <div class="finish">
+      <p class="label">Orders so far: the finish line</p>
+      <span class="value" id="k-orders">–</span>
+    </div>
+
+    <h3 class="block">Experiments</h3>
+    <p class="intro" style="margin-bottom:6px">One change at a time. The hypothesis is written before acting, and the result is checked after 7 days.</p>
+    <div class="table-wrap">
+      <table class="exp">
+        <thead><tr><th>#</th><th>Hypothesis</th><th>Metric</th><th>Before</th><th>After</th><th>Result</th></tr></thead>
+        <tbody id="exp-body"><tr><td colspan="6">Loading…</td></tr></tbody>
+      </table>
+    </div>
+    <p class="data-note" id="data-note">Numbers update daily from the studio's tracker.</p>
   </section>
 
   <section>
-    <h2>How it works</h2>
-    <ul class="steps">
-      <li><span class="n">01</span><span><b>Email your project</b> — what you need, any existing branding, and a rough deadline.</span></li>
-      <li><span class="n">02</span><span><b>Get a quote &amp; timeline</b> — same-day reply, flat price up front.</span></li>
-      <li><span class="n">03</span><span><b>Review &amp; revise</b> — drafts shared for feedback before final files.</span></li>
-      <li><span class="n">04</span><span><b>Get your files</b> — print-ready and web-ready formats, plus the editable Canva source.</span></li>
-    </ul>
+    <p class="eyebrow">How it works</p>
+    <h2>Simple, flat-priced, fast</h2>
+    <ol class="steps">
+      <li><span class="n">01</span><span><b>Email your project:</b> what you need, any existing branding, and a rough deadline.</span></li>
+      <li><span class="n">02</span><span><b>Get a quote and timeline:</b> same-day reply, flat price up front.</span></li>
+      <li><span class="n">03</span><span><b>Review and revise:</b> drafts shared for feedback before final files.</span></li>
+      <li><span class="n">04</span><span><b>Get your files:</b> print-ready and web-ready formats, plus the editable Canva source.</span></li>
+    </ol>
   </section>
 
   <section id="contact">
-    <h2>Start a project</h2>
     <div class="contact-box">
-      <div class="copy">
-        <h3 style="margin:0;font-family:'Work Sans',sans-serif;font-size:1.05rem;">Email me what you need — I'll follow up same day.</h3>
-        <p>Online ordering for quick-turn designs is coming soon. For now, every project starts with an email.</p>
+      <div>
+        <h2 style="margin:0">Start a project</h2>
+        <p>Email me what you need and I'll follow up the same day.</p>
       </div>
-      <div class="email-copy">
-        <span id="email-text">stostr.team@gmail.com</span>
-        <button onclick="copyEmail()" id="copy-btn">copy</button>
-      </div>
+      <div class="email-copy"><span id="em">stostr.team@gmail.com</span><button type="button" id="copy">copy</button></div>
     </div>
   </section>
+</main>
 
-  <footer>Mira Designs &middot; a stostr.com/miradesigns site</footer>
-</div>
+<footer>Made With Mira Studio · a <a href="/">stostr.com</a> site · <a href="https://www.instagram.com/madewithmirastudio" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.etsy.com/shop/MadeWithMiraStudio" target="_blank" rel="noopener">Etsy</a></footer>
 
 <script>
-  function copyEmail(){
-    const text = document.getElementById('email-text').textContent;
-    const btn = document.getElementById('copy-btn');
-    navigator.clipboard.writeText(text).then(()=>{
-      btn.textContent = 'copied';
-      setTimeout(()=>{btn.textContent='copy';}, 1500);
-    }).catch(()=>{
-      btn.textContent = 'select & copy';
-    });
+(function(){
+  const CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTXi5GLvKJDbMPu8huAI7Ap9e0eXYwegmWsSxbZbFE_KxYCb_znbjgZkaZaUUsi9a7DdvfGQJOCUDDg/pub?gid=2024100801&single=true&output=csv";
+
+  // Snapshot used if the live sheet can't be reached.
+  const SNAPSHOT = {
+    metrics:{quality:0,dist:0,clicks:0,views:1,orders:0},
+    trend:[{d:"2026-10-07",views:1,clicks:0,posts:0,quality:0}],
+    exps:[
+      ["E-001","Filling all 13 tags with buyer search terms will get the first Etsy search views","Etsy views (7-day total)","0","",""],
+      ["E-002","3 posts a week linking to listings will bring the first visits from Instagram/Facebook","Etsy visits from social","0","",""],
+      ["E-003","Fixing the price ladder and the bundle title will make the bundle the obvious choice and lift US conversion","US Etsy visits and orders (14-day)","0","",""]
+    ],
+    live:false
+  };
+
+  function parseCSV(text){
+    const rows=[];let row=[],cell="",q=false;
+    for(let i=0;i<text.length;i++){
+      const c=text[i];
+      if(q){ if(c==='"'){ if(text[i+1]==='"'){cell+='"';i++;} else q=false; } else cell+=c; }
+      else if(c==='"') q=true;
+      else if(c===','){row.push(cell);cell="";}
+      else if(c==='\n'){row.push(cell);rows.push(row);row=[];cell="";}
+      else if(c!=='\r') cell+=c;
+    }
+    if(cell!==""||row.length){row.push(cell);rows.push(row);}
+    return rows;
   }
+  const num=v=>{const n=parseFloat(String(v||"").replace(/,/g,""));return isNaN(n)?0:n;};
+
+  function fromRows(rows){
+    const get=label=>{const r=rows.find(r=>(r[0]||"").trim()===label);return r?num(r[1]):0;};
+    const out={metrics:{quality:get("Listing quality"),dist:get("Distribution"),clicks:get("Social link clicks"),views:get("Etsy views"),orders:get("Orders")},trend:[],exps:[],live:true};
+    const hi=rows.findIndex(r=>(r[0]||"").trim()==="Date");
+    if(hi>=0){
+      for(let i=hi+1;i<rows.length;i++){
+        const r=rows[i];const d=(r[0]||"").trim();
+        if(/^\d{4}-\d{2}-\d{2}$/.test(d)) out.trend.push({d,views:num(r[1]),clicks:num(r[2]),posts:num(r[3]),quality:num(r[4])});
+        const e=(r[7]||"").trim();
+        if(/^E-\d+/.test(e)) out.exps.push([e,r[8]||"",r[9]||"",r[10]||"",r[11]||"",r[12]||""]);
+      }
+    }
+    out.trend.sort((a,b)=>a.d.localeCompare(b.d));
+    return out;
+  }
+
+  function spark(svg,points,label){
+    const W=200,H=46,P=5;
+    svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
+    svg.setAttribute("preserveAspectRatio","none");
+    if(points.length<2){
+      svg.innerHTML=`<text x="0" y="30" font-size="11" fill="currentColor" style="fill:var(--muted)">Trend appears after day 2</text>`;
+      return;
+    }
+    const max=Math.max(1,...points.map(p=>p.v));
+    const x=i=>P+i*(W-2*P)/(points.length-1), y=v=>H-P-(v/max)*(H-2*P);
+    const line=points.map((p,i)=>`${i?"L":"M"}${x(i).toFixed(1)},${y(p.v).toFixed(1)}`).join("");
+    const area=`${line}L${x(points.length-1)},${H-P}L${x(0)},${H-P}Z`;
+    const li=points.length-1;
+    svg.innerHTML=`<line x1="${P}" x2="${W-P}" y1="${H-P}" y2="${H-P}" stroke="var(--line)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+      <path d="${area}" fill="var(--mark)" opacity="0.1"/>
+      <path d="${line}" fill="none" stroke="var(--mark)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>`;
+    // end dot as HTML so it stays round with preserveAspectRatio=none
+    const card=svg.parentElement;
+    let dot=card.querySelector(".enddot");
+    if(!dot){dot=document.createElement("span");dot.className="enddot";card.appendChild(dot);}
+    const tip=card.querySelector(".tip")||Object.assign(document.createElement("span"),{className:"tip"});
+    card.appendChild(tip);
+    function place(i,el){
+      const r=svg.getBoundingClientRect(),cr=card.getBoundingClientRect();
+      const px=r.left-cr.left+x(i)/W*r.width, py=r.top-cr.top+y(points[i].v)/H*r.height;
+      el.style.left=px+"px";el.style.top=py+"px";return {px,py};
+    }
+    Object.assign(dot.style,{position:"absolute",width:"10px",height:"10px",borderRadius:"50%",background:"var(--mark)",boxShadow:"0 0 0 2px var(--surface)",transform:"translate(-50%,-50%)"});
+    place(li,dot);
+    window.addEventListener("resize",()=>place(li,dot));
+    svg.addEventListener("mousemove",ev=>{
+      const r=svg.getBoundingClientRect();const rel=(ev.clientX-r.left)/r.width*W;
+      let i=Math.round((rel-P)/((W-2*P)/(points.length-1)));i=Math.max(0,Math.min(li,i));
+      place(i,tip);tip.textContent=`${points[i].d.slice(5)}: ${points[i].v} ${label}`;tip.style.opacity=1;
+    });
+    svg.addEventListener("mouseleave",()=>tip.style.opacity=0);
+  }
+
+  function render(data){
+    const m=data.metrics;
+    const set=(id,v)=>{document.querySelector(`#${id} [data-v]`).textContent=v.toLocaleString();};
+    set("k-quality",m.quality); set("k-dist",m.dist); set("k-clicks",m.clicks); set("k-views",m.views);
+    document.querySelector("#k-quality .meter b").style.width=Math.min(100,m.quality/8*100)+"%";
+    document.querySelector("#k-quality [data-v]").textContent=`${m.quality} / 8`;
+    document.getElementById("k-orders").textContent=m.orders.toLocaleString();
+    const t=data.trend;
+    spark(document.querySelector("#k-dist svg"),t.map(r=>({d:r.d,v:r.posts})),"posts");
+    spark(document.querySelector("#k-clicks svg"),t.map(r=>({d:r.d,v:r.clicks})),"clicks");
+    spark(document.querySelector("#k-views svg"),t.map(r=>({d:r.d,v:r.views})),"views");
+    const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+    document.getElementById("exp-body").innerHTML=data.exps.length?data.exps.map(e=>
+      `<tr><td class="num">${esc(e[0])}</td><td>${esc(e[1])}</td><td>${esc(e[2])}</td><td class="num">${esc(e[3]||"–")}</td><td class="num">${esc(e[4]||"–")}</td><td>${e[5]?`<span class="badge">${esc(e[5])}</span>`:'<span class="badge">In progress</span>'}</td></tr>`).join(""):
+      `<tr><td colspan="6">No experiments yet.</td></tr>`;
+    const last=t.length?t[t.length-1].d:"";
+    document.getElementById("data-note").textContent=(data.live?"Live from the studio's tracker":"Snapshot")+(last?` · last entry ${last}`:"")+" · updated daily by hand from Etsy Stats and Meta Insights.";
+  }
+
+  render(SNAPSHOT);
+  fetch(CSV,{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.text();})
+    .then(txt=>{const d=fromRows(parseCSV(txt));if(d.trend.length||d.exps.length)render(d);})
+    .catch(()=>{});
+
+  document.getElementById("copy").addEventListener("click",()=>{
+    const t=document.getElementById("em").textContent;
+    (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{
+      const b=document.getElementById("copy");b.textContent="copied";setTimeout(()=>b.textContent="copy",1500);
+    }).catch(()=>{});
+  });
+})();
 </script>
 </body>
 </html>
