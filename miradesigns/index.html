@@ -88,15 +88,36 @@
 
   /* Growth case study */
   .loop{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 28px;font-size:0.86rem;}
-  .loop span{background:var(--chip);padding:6px 12px;border-radius:999px;font-weight:600;}
+  .loop span{background:var(--chip);padding:6px 10px 6px 12px;border-radius:999px;font-weight:600;white-space:nowrap;}
   .loop .human{background:transparent;border:1.5px solid var(--gold);color:var(--gold);}
   .loop em{color:var(--muted);font-style:normal;}
   .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
-  .kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px;position:relative;}
+  .kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px;position:relative;display:flex;flex-direction:column;}
+  .kpi .bars{margin-top:auto;}
+  .kpi .meter{margin-top:auto;margin-bottom:24px;}
+  .exp .m{display:block;font-size:0.76rem;color:var(--muted);margin-top:3px;}
   .kpi .label{font-size:0.8rem;font-weight:700;color:var(--muted);margin:0;}
   .kpi .value{font-size:2.2rem;font-weight:800;margin:4px 0 2px;font-variant-numeric:tabular-nums;}
   .kpi .sub{font-size:0.78rem;color:var(--muted);margin:0 0 10px;}
-  .kpi svg{width:100%;height:46px;display:block;overflow:visible;}
+  .kpi .delta{font-size:0.76rem;color:var(--muted);margin:0 0 10px;min-height:1.2em;}
+  .kpi .delta b{color:var(--ink);font-weight:700;}
+  .bars{display:flex;align-items:flex-end;gap:3px;height:52px;border-bottom:1px solid var(--line);position:relative;}
+  .bars span{flex:1;min-width:0;border-radius:3px 3px 0 0;background:var(--mark);position:relative;}
+  .bars span.zero{height:2px!important;background:var(--muted);opacity:.45;border-radius:1px;}
+  .bars span.empty{height:2px!important;background:transparent;border-top:2px dotted var(--line);border-radius:0;}
+  .bars span:hover{outline:2px solid var(--surface);outline-offset:-1px;filter:brightness(1.1);}
+  .bars span.zero:hover,.bars span.empty:hover{outline:none;}
+  .bars span::before{content:"";position:absolute;inset:-26px -2px -6px;}
+  .axis{display:flex;justify-content:space-between;font-size:0.68rem;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums;}
+  .daycount{display:inline-flex;align-items:center;gap:8px;font-size:0.8rem;font-weight:700;background:var(--chip);padding:5px 12px;border-radius:999px;margin:0 0 18px;}
+  .daycount i{width:8px;height:8px;border-radius:50%;background:var(--mark);display:inline-block;}
+  .who{font-style:normal;font-size:0.66rem;font-weight:800;letter-spacing:0.06em;margin-left:6px;padding:1px 6px;border-radius:999px;vertical-align:1px;}
+  .who.ai{background:var(--ink);color:var(--paper);}
+  .who.you{border:1px solid var(--gold);color:var(--gold);}
+  .loop-key{font-size:0.78rem;color:var(--muted);margin:-18px 0 26px;}
+  .badge.won{background:var(--mark);color:#fff;}
+  .badge.lost{background:var(--gold);color:#fff;}
+  .badge.run{background:transparent;border:1px solid var(--mark);color:var(--orchid);}
   .meter{height:8px;background:var(--chip);border-radius:999px;overflow:hidden;margin-top:14px;}
   .meter b{display:block;height:100%;background:var(--mark);border-radius:999px;}
   .finish{margin-top:14px;background:linear-gradient(90deg,var(--wash-1),var(--wash-2) 50%,var(--wash-3));border-radius:14px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
@@ -240,8 +261,10 @@
     <p class="intro">Mira's Etsy shop launched with zero views. Instead of another stats dashboard, I run a weekly growth loop: an AI agent drafts content and proposes one change at a time, I approve it, it gets scheduled, and these numbers check whether it worked. Tracking started 7 October 2026.</p>
 
     <div class="loop" aria-label="How the loop works">
-      <span>Plan</span><em>→</em><span>Design</span><em>→</em><span class="human">I approve</span><em>→</em><span>Schedule</span><em>→</em><span>Measure</span><em>→</em><span>Learn</span>
+      <span>Plan<i class="who ai">AI</i></span><em>→</em><span>Design<i class="who ai">AI</i></span><em>→</em><span class="human">Approve<i class="who you">YOU</i></span><em>→</em><span>Schedule<i class="who ai">AI</i></span><em>→</em><span>Measure<i class="who you">YOU</i></span><em>→</em><span>Learn<i class="who ai">AI</i><i class="who you">YOU</i></span>
     </div>
+    <p class="loop-key"><b>AI</b>: an agent drafts posts, picks hooks, schedules them and proposes the next experiment. <b>YOU</b>: a human checkpoint. Measuring is by hand for now; next it moves to a daily automated pull from Meta and Etsy.</p>
+    <p class="daycount" id="daycount"><i></i><span>Day 1 of the cold start · today's zeros are the baseline</span></p>
 
     <div class="kpis">
       <div class="kpi" id="k-quality">
@@ -254,19 +277,25 @@
         <p class="label">Distribution</p>
         <p class="value" data-v>–</p>
         <p class="sub">posts published</p>
-        <svg aria-hidden="true"></svg>
+        <p class="delta" data-d></p>
+        <div class="bars" role="img"></div>
+        <div class="axis"><span data-a0></span><span data-a1></span></div>
       </div>
       <div class="kpi" id="k-clicks">
         <p class="label">Social link clicks</p>
         <p class="value" data-v>–</p>
         <p class="sub">from Instagram &amp; Facebook to Etsy</p>
-        <svg aria-hidden="true"></svg>
+        <p class="delta" data-d></p>
+        <div class="bars" role="img"></div>
+        <div class="axis"><span data-a0></span><span data-a1></span></div>
       </div>
       <div class="kpi" id="k-views">
         <p class="label">Etsy views</p>
         <p class="value" data-v>–</p>
         <p class="sub">listing views since launch</p>
-        <svg aria-hidden="true"></svg>
+        <p class="delta" data-d></p>
+        <div class="bars" role="img"></div>
+        <div class="axis"><span data-a0></span><span data-a1></span></div>
       </div>
     </div>
     <div class="finish">
@@ -275,13 +304,14 @@
     </div>
 
     <h3 class="block">Experiments</h3>
-    <p class="intro" style="margin-bottom:6px">One change at a time. The hypothesis is written before acting, and the result is checked after 7 days.</p>
+    <p class="intro" style="margin-bottom:6px">One change at a time. The hypothesis is written before acting. Before and After are calculated from the daily numbers as a daily average: the window before the change vs the same window after it.</p>
     <div class="table-wrap">
       <table class="exp">
-        <thead><tr><th>#</th><th>Hypothesis</th><th>Metric</th><th>Before</th><th>After</th><th>Result</th></tr></thead>
+        <thead><tr><th>#</th><th>Hypothesis and metric</th><th>Before</th><th>After</th><th>Change</th><th>Status</th></tr></thead>
         <tbody id="exp-body"><tr><td colspan="6">Loading…</td></tr></tbody>
       </table>
     </div>
+    <p class="data-note">At cold-start traffic, results are directional, not statistically significant. The verdict (Won, Lost or Inconclusive) is a human call, made once the window closes.</p>
     <p class="data-note" id="data-note">Numbers update daily from the studio's tracker.</p>
   </section>
 
@@ -316,11 +346,11 @@
   // Snapshot used if the live sheet can't be reached.
   const SNAPSHOT = {
     metrics:{quality:0,dist:0,clicks:0,views:1,orders:0},
-    trend:[{d:"2026-10-07",views:1,clicks:0,posts:0,quality:0}],
+    trend:[{d:"2026-10-07",views:1,clicks:0,posts:0,quality:0,orders:0}],
     exps:[
-      ["E-001","Filling all 13 tags with buyer search terms will get the first Etsy search views","Etsy views (7-day total)","0","",""],
-      ["E-002","3 posts a week linking to listings will bring the first visits from Instagram/Facebook","Etsy visits from social","0","",""],
-      ["E-003","Fixing the price ladder and the bundle title will make the bundle the obvious choice and lift US conversion","US Etsy visits and orders (14-day)","0","",""]
+      ["E-001","Filling all 13 tags with buyer search terms will get the first Etsy search views","Etsy views (7-day total)","0","","",""],
+      ["E-002","3 posts a week linking to listings will bring the first visits from Instagram/Facebook","Etsy visits from social","0","","",""],
+      ["E-003","Fixing the price ladder and the bundle title will make the bundle the obvious choice and lift US conversion","US Etsy visits and orders (14-day)","0","","",""]
     ],
     live:false
   };
@@ -339,6 +369,17 @@
     return rows;
   }
   const num=v=>{const n=parseFloat(String(v||"").replace(/,/g,""));return isNaN(n)?0:n;};
+  // Dates: accept 2026-10-07 or 10/7/2026
+  function iso(v){
+    v=String(v||"").trim();
+    if(/^\d{4}-\d{2}-\d{2}$/.test(v)) return v;
+    const m=v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    return m?`${m[3]}-${m[1].padStart(2,"0")}-${m[2].padStart(2,"0")}`:"";
+  }
+  const DAY=864e5;
+  const toT=d=>Date.parse(d+"T00:00:00Z");
+  const fromT=t=>new Date(t).toISOString().slice(0,10);
+  const short=d=>new Date(toT(d)).toLocaleDateString("en-GB",{day:"numeric",month:"short",timeZone:"UTC"});
 
   function fromRows(rows){
     const get=label=>{const r=rows.find(r=>(r[0]||"").trim()===label);return r?num(r[1]):0;};
@@ -346,71 +387,96 @@
     const hi=rows.findIndex(r=>(r[0]||"").trim()==="Date");
     if(hi>=0){
       for(let i=hi+1;i<rows.length;i++){
-        const r=rows[i];const d=(r[0]||"").trim();
-        if(/^\d{4}-\d{2}-\d{2}$/.test(d)) out.trend.push({d,views:num(r[1]),clicks:num(r[2]),posts:num(r[3]),quality:num(r[4])});
+        const r=rows[i];const d=iso(r[0]);
+        if(d) out.trend.push({d,views:num(r[1]),clicks:num(r[2]),posts:num(r[3]),quality:num(r[4]),orders:num(r[5])});
         const e=(r[7]||"").trim();
-        if(/^E-\d+/.test(e)) out.exps.push([e,r[8]||"",r[9]||"",r[10]||"",r[11]||"",r[12]||""]);
+        if(/^E-\d+/.test(e)) out.exps.push([e,r[8]||"",r[9]||"",r[10]||"",r[11]||"",r[12]||"",r[13]||""]);
       }
     }
     out.trend.sort((a,b)=>a.d.localeCompare(b.d));
     return out;
   }
 
-  function spark(svg,points,label){
-    const W=200,H=46,P=5;
-    svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
-    svg.setAttribute("preserveAspectRatio","none");
-    if(points.length<2){
-      svg.innerHTML=`<text x="0" y="30" font-size="11" fill="currentColor" style="fill:var(--muted)">Trend appears after day 2</text>`;
-      return;
-    }
-    const max=Math.max(1,...points.map(p=>p.v));
-    const x=i=>P+i*(W-2*P)/(points.length-1), y=v=>H-P-(v/max)*(H-2*P);
-    const line=points.map((p,i)=>`${i?"L":"M"}${x(i).toFixed(1)},${y(p.v).toFixed(1)}`).join("");
-    const area=`${line}L${x(points.length-1)},${H-P}L${x(0)},${H-P}Z`;
-    const li=points.length-1;
-    svg.innerHTML=`<line x1="${P}" x2="${W-P}" y1="${H-P}" y2="${H-P}" stroke="var(--line)" stroke-width="1" vector-effect="non-scaling-stroke"/>
-      <path d="${area}" fill="var(--mark)" opacity="0.1"/>
-      <path d="${line}" fill="none" stroke="var(--mark)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>`;
-    // end dot as HTML so it stays round with preserveAspectRatio=none
-    const card=svg.parentElement;
-    let dot=card.querySelector(".enddot");
-    if(!dot){dot=document.createElement("span");dot.className="enddot";card.appendChild(dot);}
-    const tip=card.querySelector(".tip")||Object.assign(document.createElement("span"),{className:"tip"});
-    card.appendChild(tip);
-    function place(i,el){
-      const r=svg.getBoundingClientRect(),cr=card.getBoundingClientRect();
-      const px=r.left-cr.left+x(i)/W*r.width, py=r.top-cr.top+y(points[i].v)/H*r.height;
-      el.style.left=px+"px";el.style.top=py+"px";return {px,py};
-    }
-    Object.assign(dot.style,{position:"absolute",width:"10px",height:"10px",borderRadius:"50%",background:"var(--mark)",boxShadow:"0 0 0 2px var(--surface)",transform:"translate(-50%,-50%)"});
-    place(li,dot);
-    window.addEventListener("resize",()=>place(li,dot));
-    svg.addEventListener("mousemove",ev=>{
-      const r=svg.getBoundingClientRect();const rel=(ev.clientX-r.left)/r.width*W;
-      let i=Math.round((rel-P)/((W-2*P)/(points.length-1)));i=Math.max(0,Math.min(li,i));
-      place(i,tip);tip.textContent=`${points[i].d.slice(5)}: ${points[i].v} ${label}`;tip.style.opacity=1;
+  // Daily bar strip: 14 day slots from the first tracked day (or the latest 14).
+  function bars(card,trend,key,label){
+    const box=card.querySelector(".bars"), tip=card.querySelector(".tip")||card.appendChild(Object.assign(document.createElement("span"),{className:"tip"}));
+    if(!trend.length){box.innerHTML="";return;}
+    const N=14, byD=Object.fromEntries(trend.map(r=>[r.d,r[key]]));
+    const last=trend[trend.length-1].d, first=trend[0].d;
+    const start=trend.length>=N?toT(last)-(N-1)*DAY:toT(first);
+    const slots=[...Array(N)].map((_,i)=>{const d=fromT(start+i*DAY);return {d,v:d in byD?byD[d]:null};});
+    const max=Math.max(1,...slots.map(s=>s.v||0));
+    box.innerHTML=slots.map(s=>{
+      const cls=s.v===null?"empty":s.v===0?"zero":"";
+      const h=s.v?Math.max(6,s.v/max*100):0;
+      const t=s.v===null?`${short(s.d)}: not logged yet`:`${short(s.d)}: ${s.v} ${label}`;
+      return `<span class="${cls}" style="height:${h}%" data-t="${t}"></span>`;
+    }).join("");
+    box.setAttribute("aria-label",`${label} per day: `+slots.filter(s=>s.v!==null).map(s=>`${short(s.d)} ${s.v}`).join(", "));
+    card.querySelector("[data-a0]").textContent=short(slots[0].d);
+    card.querySelector("[data-a1]").textContent=short(slots[N-1].d);
+    box.querySelectorAll("span").forEach(el=>{
+      el.addEventListener("mouseenter",()=>{
+        const r=el.getBoundingClientRect(),cr=card.getBoundingClientRect(),br=box.getBoundingClientRect();
+        tip.textContent=el.dataset.t;tip.style.left=(r.left-cr.left+r.width/2)+"px";
+        tip.style.top=(Math.min(r.top,br.bottom-2)-cr.top)+"px";tip.style.opacity=1;
+      });
+      el.addEventListener("mouseleave",()=>tip.style.opacity=0);
     });
-    svg.addEventListener("mouseleave",()=>tip.style.opacity=0);
+    // Week-over-week, the convention in Buffer/Shopify-style dashboards
+    const d=card.querySelector("[data-d]");
+    if(trend.length<8){d.textContent=`Week-over-week change shows from day 8`;return;}
+    const lt=toT(last), sum=(a,b)=>trend.filter(r=>{const t=toT(r.d);return t>a&&t<=b;}).reduce((s,r)=>s+r[key],0);
+    const cur=sum(lt-7*DAY,lt), prev=sum(lt-14*DAY,lt-7*DAY), diff=cur-prev;
+    const pct=prev?` (${diff>=0?"+":""}${Math.round(diff/prev*100)}%)`:"";
+    d.innerHTML=`<b>${diff>=0?"+":""}${diff}</b>${pct} last 7 days vs the 7 before`;
+  }
+
+  // Experiments: Before/After computed from the daily numbers.
+  function metricKey(m){m=m.toLowerCase();return /order/.test(m)?"orders":/click|social/.test(m)?"clicks":/post/.test(m)?"posts":"views";}
+  function scoreExp(e,trend){
+    const [id,hyp,metric,sheetBefore,sheetAfter,verdict,actedRaw]=e;
+    const key=metricKey(metric), w=+(metric.match(/(\d+)-day/)||[0,7])[1], acted=iso(actedRaw);
+    const r={id,hyp,metric,before:sheetBefore||"–",after:sheetAfter||"–",change:"–",status:"Not started",cls:""};
+    if(!acted){ if(verdict){r.status=verdict;} return r; }
+    const at=toT(acted), inR=(a,b)=>trend.filter(x=>{const t=toT(x.d);return t>=a&&t<b;});
+    const pre=inR(at-w*DAY,at), post=inR(at,at+w*DAY);
+    const avg=xs=>xs.reduce((s,x)=>s+x[key],0)/xs.length, f=v=>(Math.round(v*10)/10)+"/day";
+    const b=pre.length?avg(pre):num(sheetBefore)/w;
+    r.before=f(b);
+    if(post.length){
+      const a=avg(post);
+      r.after=f(a)+(post.length<w?" so far":"");
+      r.change=b?`${a-b>=0?"+":""}${Math.round((a-b)/b*100)}%`:(a?"from 0":"0");
+    }
+    if(verdict){r.status=verdict;r.cls=/won|win|keep/i.test(verdict)?"won":/lost|lose|revert/i.test(verdict)?"lost":"";}
+    else if(post.length<w){r.status=`Running · day ${post.length} of ${w}`;r.cls="run";}
+    else r.status="Ready for verdict";
+    return r;
   }
 
   function render(data){
-    const m=data.metrics;
+    const m=data.metrics, t=data.trend;
     const set=(id,v)=>{document.querySelector(`#${id} [data-v]`).textContent=v.toLocaleString();};
-    set("k-quality",m.quality); set("k-dist",m.dist); set("k-clicks",m.clicks); set("k-views",m.views);
+    set("k-dist",m.dist); set("k-clicks",m.clicks); set("k-views",m.views);
     document.querySelector("#k-quality .meter b").style.width=Math.min(100,m.quality/8*100)+"%";
     document.querySelector("#k-quality [data-v]").textContent=`${m.quality} / 8`;
     document.getElementById("k-orders").textContent=m.orders.toLocaleString();
-    const t=data.trend;
-    spark(document.querySelector("#k-dist svg"),t.map(r=>({d:r.d,v:r.posts})),"posts");
-    spark(document.querySelector("#k-clicks svg"),t.map(r=>({d:r.d,v:r.clicks})),"clicks");
-    spark(document.querySelector("#k-views svg"),t.map(r=>({d:r.d,v:r.views})),"views");
+    bars(document.getElementById("k-dist"),t,"posts","posts");
+    bars(document.getElementById("k-clicks"),t,"clicks","clicks");
+    bars(document.getElementById("k-views"),t,"views","views");
+    if(t.length){
+      const today=Math.max(toT(t[t.length-1].d),toT(fromT(Date.now())));
+      const day=Math.round((today-toT(t[0].d))/DAY)+1;
+      document.querySelector("#daycount span").textContent=day<=1?"Day 1 of the cold start · today's zeros are the baseline":`Day ${day} of the cold start · tracking since ${short(t[0].d)}`;
+    }
     const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-    document.getElementById("exp-body").innerHTML=data.exps.length?data.exps.map(e=>
-      `<tr><td class="num">${esc(e[0])}</td><td>${esc(e[1])}</td><td>${esc(e[2])}</td><td class="num">${esc(e[3]||"–")}</td><td class="num">${esc(e[4]||"–")}</td><td>${e[5]?`<span class="badge">${esc(e[5])}</span>`:'<span class="badge">In progress</span>'}</td></tr>`).join(""):
-      `<tr><td colspan="6">No experiments yet.</td></tr>`;
+    document.getElementById("exp-body").innerHTML=data.exps.length?data.exps.map(e=>{
+      const r=scoreExp(e,t);
+      return `<tr><td class="num">${esc(r.id)}</td><td>${esc(r.hyp)}<span class="m">${esc(r.metric)}</span></td><td class="num">${esc(r.before)}</td><td class="num">${esc(r.after)}</td><td class="num">${esc(r.change)}</td><td><span class="badge ${r.cls}">${esc(r.status)}</span></td></tr>`;
+    }).join(""):`<tr><td colspan="6">No experiments yet.</td></tr>`;
     const last=t.length?t[t.length-1].d:"";
-    document.getElementById("data-note").textContent=(data.live?"Live from the studio's tracker":"Snapshot")+(last?` · last entry ${last}`:"")+" · updated daily by hand from Etsy Stats and Meta Insights.";
+    document.getElementById("data-note").textContent=(data.live?"Live from the studio's tracker":"Snapshot")+(last?` · last entry ${short(last)}`:"")+" · logged daily by hand from Etsy Stats and Meta Insights.";
   }
 
   render(SNAPSHOT);
