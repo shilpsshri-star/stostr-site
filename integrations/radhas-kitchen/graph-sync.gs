@@ -129,9 +129,10 @@ function collectFacebook_(pageId, since, days, notes) {
     d.inter += reactions + comments + shares;
 
     // Meta has been renaming Page metrics; try the current name first, then older ones.
-    const ins = insights_(`${p.id}/insights`, ['post_media_view', 'post_impressions_unique', 'post_clicks_by_type'], notes, 'FB');
+    // post_impressions_unique was retired June 2025; post_total_media_view_unique (Meta's "Viewers") replaces it.
+    const ins = insights_(`${p.id}/insights`, ['post_media_view', 'post_total_media_view_unique', 'post_clicks_by_type'], notes, 'FB');
     d.views += ins.post_media_view || 0;
-    d.reach += ins.post_impressions_unique || 0;
+    d.reach += ins.post_total_media_view_unique || 0;
     const clicks = ins.post_clicks_by_type;
     d.clicks += (clicks && typeof clicks === 'object') ? (clicks['link clicks'] || 0) : 0;
     topPost_(d, 'FB', p.message, ins.post_media_view || 0);
