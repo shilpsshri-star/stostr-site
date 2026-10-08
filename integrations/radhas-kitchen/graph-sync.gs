@@ -1,5 +1,5 @@
 /**
- * Radha's Kitchen: Instagram + Facebook Graph API → growth tracker sync
+ * Radha's Kitchen: Instagram (and optionally Facebook) Graph API → growth tracker sync
  * ---------------------------------------------------------------------
  * Runs inside the "Radhas_Kitchen_Growth_Tracker" Google Sheet (Extensions → Apps Script).
  * Once a day it asks Meta's Graph API for the last 7 days of Radha's posts on
@@ -15,22 +15,27 @@
  * Why the last 7 days every run: a post keeps collecting views for days, so
  * re-syncing the recent window keeps each day's totals current (idempotent upsert).
  *
- * Setup (once):
- *   1. Project Settings → Script properties → add META_PAGE_TOKEN = the Page access token.
- *      The token never goes in this code or in the repo.
- *   2. Run setup() once and approve Google's permission prompt. It runs a first sync
- *      and installs a daily 6 am trigger.
+ * Two ways to connect (set ONE in Project Settings → Script properties; never in code):
+ *   IG_TOKEN        Instagram API with Instagram Login (instagram_business_basic +
+ *                   instagram_business_manage_insights). Instagram only. The script refreshes
+ *                   this 60-day token itself every week, so it never lapses.
+ *                   Facebook numbers can still be typed into columns O–S and are added in.
+ *   META_PAGE_TOKEN Instagram API with Facebook Login (Page token). Instagram + Facebook.
+ *
+ * Then run setup() once and approve Google's permission prompt. It runs a first sync
+ * and installs a daily 6 am trigger.
  */
 
 const CONFIG = {
   GRAPH: 'https://graph.facebook.com/v22.0',
+  IG_GRAPH: 'https://graph.instagram.com/v22.0',
   DAYS_BACK: 7,
   START: '2026-10-06',             // first day of tracking; never write rows before it
   TZ: 'America/Chicago',          // Katy, TX
   SHEET: 'Daily Check',
   LOG_SHEET: 'Sync log',
   HEADER_ROW: 4,                  // row with "Date", "Posts published", ...
-  COL: { date: 1, posts: 2, views: 3, reach: 4, inter: 5, clicks: 6, igFollowers: 7, fbFollowers: 8, top: 12, synced: 14 }
+  COL: { date: 1, posts: 2, views: 3, reach: 4, inter: 5, clicks: 6, igFollowers: 7, fbFollowers: 8, top: 12, synced: 14, fbManual: 15 }  // O–S: FB posts, views, reach, interactions, link clicks (typed by hand in IG-only mode)
 };
 
 /* ---------- entry points ---------- */
@@ -47,22 +52,29 @@ function syncGraph() {
   const started = new Date();
   const notes = [];
   try {
-    const page = graph_('me', { fields: 'id,name,followers_count,instagram_business_account{id,username,followers_count}' });
-    const ig = page.instagram_business_account;
-    if (!ig) throw new Error('No Instagram business account is linked to this Page.');
-
     const days = {};                                   // 'yyyy-MM-dd' → totals
     const since = new Date(started.getTime() - CONFIG.DAYS_BACK * 864e5);
+    let ig, fbFollowers = null;
 
+    if (MODE_() === 'instagram') {                     // Instagram Login: graph.instagram.com, 'me' = the IG account
+      refreshIgToken_(notes);
+      ig = graph_('me', { fields: 'user_id,username,followers_count' });
+      ig.id = 'me';
+    } else {                                           // Facebook Login: Page token, IG account hangs off the Page
+      const page = graph_('me', { fields: 'id,name,followers_count,instagram_business_account{id,username,followers_count}' });
+      ig = page.instagram_business_account;
+      if (!ig) throw new Error('No Instagram business account is linked to this Page.');
+      fbFollowers = page.followers_count;
+      collectFacebook_(page.id, since, days, notes);
+    }
     collectInstagram_(ig.id, since, days, notes);
     collectBioTaps_(ig.id, started, days, notes);
-    collectFacebook_(page.id, since, days, notes);
 
     const today = fmt_(started);
     const yesterday = fmt_(new Date(started.getTime() - 864e5));
-    writeDays_(days, { date: yesterday, ig: ig.followers_count, fb: page.followers_count }, today);
+    writeDays_(days, { date: yesterday, ig: ig.followers_count, fb: fbFollowers }, today);
 
-    log_('OK', `${Object.keys(days).length} day(s) synced · IG @${ig.username} ${ig.followers_count} followers · FB ${page.followers_count}` + (notes.length ? ' · ' + notes.join('; ') : ''));
+    log_('OK', `${MODE_()} mode · ${Object.keys(days).length} day(s) synced · IG @${ig.username} ${ig.followers_count} followers` + (fbFollowers !== null ? ` · FB ${fbFollowers}` : '') + (notes.length ? ' · ' + notes.join('; ') : ''));
   } catch (e) {
     log_('ERROR', e.message);
     throw e;
@@ -133,6 +145,10 @@ function writeDays_(days, followers, today) {
   if (sh.getRange(CONFIG.HEADER_ROW, CONFIG.COL.synced).getValue() === '') {
     sh.getRange(CONFIG.HEADER_ROW, CONFIG.COL.synced).setValue('Synced (Graph API)');
   }
+  if (sh.getRange(CONFIG.HEADER_ROW, CONFIG.COL.fbManual).getValue() === '') {
+    sh.getRange(CONFIG.HEADER_ROW, CONFIG.COL.fbManual, 1, 5)
+      .setValues([['FB posts (manual)', 'FB views (manual)', 'FB reach (manual)', 'FB interactions (manual)', 'FB link clicks (manual)']]);
+  }
   const first = CONFIG.HEADER_ROW + 1;
   const last = Math.max(sh.getLastRow(), first);
   const sheetTz = SpreadsheetApp.getActive().getSpreadsheetTimeZone();   // date cells live in the sheet's zone
@@ -153,20 +169,51 @@ function writeDays_(days, followers, today) {
   if (!days[followers.date]) days[followers.date] = blank_();
   Object.keys(days).sort().filter(date => date >= CONFIG.START).forEach(date => {
     const d = days[date], r = rowFor(date), C = CONFIG.COL;
-    sh.getRange(r, C.posts, 1, 5).setValues([[d.posts, d.views, d.reach, d.inter, d.clicks]]);
+    // Instagram-only mode: add any Facebook numbers typed by hand in O–S, so totals stay IG + FB.
+    const fb = MODE_() === 'instagram'
+      ? sh.getRange(r, C.fbManual, 1, 5).getValues()[0].map(v => Number(v) || 0)
+      : [0, 0, 0, 0, 0];
+    sh.getRange(r, C.posts, 1, 5).setValues([[d.posts + fb[0], d.views + fb[1], d.reach + fb[2], d.inter + fb[3], d.clicks + fb[4]]]);
     if (d.top) sh.getRange(r, C.top).setValue(d.top);
-    if (date === followers.date) sh.getRange(r, C.igFollowers, 1, 2).setValues([[followers.ig, followers.fb]]);
+    if (date === followers.date) {
+      sh.getRange(r, C.igFollowers).setValue(followers.ig);
+      if (followers.fb !== null) sh.getRange(r, C.fbFollowers).setValue(followers.fb);
+    }
     sh.getRange(r, C.synced).setValue('Auto ' + today);
   });
 }
 
 /* ---------- helpers ---------- */
 
+function MODE_() {
+  const p = PropertiesService.getScriptProperties();
+  if (p.getProperty('IG_TOKEN')) return 'instagram';
+  if (p.getProperty('META_PAGE_TOKEN')) return 'facebook';
+  throw new Error('Add IG_TOKEN (or META_PAGE_TOKEN) in Project Settings → Script properties.');
+}
+
+// Instagram Login tokens last 60 days; refresh weekly so the sync never lapses.
+function refreshIgToken_(notes) {
+  const p = PropertiesService.getScriptProperties();
+  const last = Number(p.getProperty('IG_TOKEN_REFRESHED') || 0);
+  if (Date.now() - last < 7 * 864e5) return;
+  try {
+    const res = UrlFetchApp.fetch(`https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${encodeURIComponent(p.getProperty('IG_TOKEN'))}`, { muteHttpExceptions: true });
+    const body = JSON.parse(res.getContentText());
+    if (body.access_token) {
+      p.setProperty('IG_TOKEN', body.access_token);
+      p.setProperty('IG_TOKEN_REFRESHED', String(Date.now()));
+      notes.push('token refreshed');
+    } else notes.push('token refresh skipped: ' + (body.error && body.error.message || 'unknown'));
+  } catch (e) { notes.push('token refresh failed'); }
+}
+
 function graph_(path, params) {
-  const token = PropertiesService.getScriptProperties().getProperty('META_PAGE_TOKEN');
-  if (!token) throw new Error('Missing META_PAGE_TOKEN in Project Settings → Script properties.');
+  const p = PropertiesService.getScriptProperties();
+  const ig = MODE_() === 'instagram';
+  const token = p.getProperty(ig ? 'IG_TOKEN' : 'META_PAGE_TOKEN');
   const qs = Object.keys(params || {}).map(k => `${k}=${encodeURIComponent(params[k])}`).join('&');
-  const res = UrlFetchApp.fetch(`${CONFIG.GRAPH}/${path}?${qs}${qs ? '&' : ''}access_token=${encodeURIComponent(token)}`, { muteHttpExceptions: true });
+  const res = UrlFetchApp.fetch(`${ig ? CONFIG.IG_GRAPH : CONFIG.GRAPH}/${path}?${qs}${qs ? '&' : ''}access_token=${encodeURIComponent(token)}`, { muteHttpExceptions: true });
   const body = JSON.parse(res.getContentText());
   if (body.error) throw new Error(`${path.split('?')[0]}: ${body.error.message}`);
   return body;

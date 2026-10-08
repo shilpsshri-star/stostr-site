@@ -25,5 +25,11 @@ comments + shares), order-link clicks (FB post link clicks + Instagram bio-link 
   never in this repo. A Page token from a long-lived user token doesn't expire.
 - **Observable.** Every run writes a line to the `Sync log` tab (status, days synced, any metric gaps).
 
-**Permissions (Development-mode app, Facebook Login):** `pages_show_list`, `pages_read_engagement`,
-`read_insights`, `instagram_basic`, `instagram_manage_insights`, `business_management`.
+**Two connection modes** (one Script Property, never in code):
+- `IG_TOKEN`: Instagram API with Instagram Login (`instagram_business_basic`, `instagram_business_manage_insights`).
+  Instagram only, and the 60-day token is refreshed weekly by the script. Facebook numbers can be typed into
+  columns O–S and are added into the totals. **This is the mode in use**: the Facebook Page sits in a business
+  portfolio whose Accounts Center links the owner's Facebook and Instagram identities, which blocks the
+  Facebook Login Page picker.
+- `META_PAGE_TOKEN`: Instagram API with Facebook Login (Page token: `pages_show_list`, `pages_read_engagement`,
+  `read_insights`, `instagram_basic`, `instagram_manage_insights`). Instagram + Facebook, fully automatic.
