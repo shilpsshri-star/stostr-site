@@ -221,9 +221,9 @@
     <p class="intro">Radha's Kitchen sells to local families in Katy. The goal is more online orders. Each week an AI agent plans and drafts the social calendar, Radha approves it, it's scheduled on Instagram and Facebook, and these numbers check whether it turned into orders. Tracking started 6 October 2026.</p>
 
     <div class="loop" aria-label="How the loop works">
-      <span>Plan<i class="who ai">AI</i></span><em>→</em><span>Draft<i class="who ai">AI</i></span><em>→</em><span class="human">Approve<i class="who you">YOU</i></span><em>→</em><span>Schedule<i class="who ai">AI</i></span><em>→</em><span>Measure<i class="who you">YOU</i></span><em>→</em><span>Learn<i class="who ai">AI</i><i class="who you">YOU</i></span>
+      <span>Plan<i class="who ai">AI</i></span><em>→</em><span>Draft<i class="who ai">AI</i></span><em>→</em><span class="human">Approve<i class="who you">YOU</i></span><em>→</em><span>Schedule<i class="who ai">AI</i></span><em>→</em><span>Measure<i class="who ai">AI</i></span><em>→</em><span>Learn<i class="who ai">AI</i><i class="who you">YOU</i></span>
     </div>
-    <p class="loop-key"><b>AI</b>: an agent plans the calendar, writes posts, schedules them and proposes the next experiment. <b>YOU</b>: a human checkpoint. Measuring is by hand from Meta Business Suite for now; next it moves to a daily automated pull.</p>
+    <p class="loop-key"><b>AI</b>: an agent plans the calendar, writes posts, schedules them and proposes the next experiment. <b>YOU</b>: a human checkpoint. Measuring is automated: every morning a script pulls Instagram and Facebook numbers from the Meta Graph API into the tracker. Orders are still logged by hand.</p>
     <p class="daycount" id="daycount"><i></i><span>Day 1 of tracking</span></p>
 
     <div class="kpis">
@@ -453,7 +453,7 @@
       return `<tr><td class="num">${esc(r.id)}</td><td>${esc(r.hyp)}<span class="m">${esc(r.metric)}</span></td><td class="num">${esc(r.before)}</td><td class="num">${esc(r.after)}</td><td class="num">${esc(r.change)}</td><td><span class="badge ${r.cls}">${esc(r.status)}</span></td></tr>`;
     }).join(""):`<tr><td colspan="6">No experiments yet.</td></tr>`;
     const last=t.length?t[t.length-1].d:"";
-    document.getElementById("data-note").textContent=(data.live?"Live from the kitchen's tracker":"Snapshot")+(last?` · last entry ${short(last)}`:"")+" · logged daily by hand from Meta Business Suite and order messages.";
+    document.getElementById("data-note").textContent=(data.live?"Live from the kitchen's tracker":"Snapshot")+(last?` · last entry ${short(last)}`:"")+" · Meta numbers synced daily via the Graph API; orders logged by hand.";
   }
 
   render(SNAPSHOT);
