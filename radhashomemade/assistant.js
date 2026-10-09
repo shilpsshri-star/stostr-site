@@ -47,9 +47,14 @@
     // Details our facts don't cover (spice level, ingredients, storage...) → AI, which hands off if unsure.
     const unknownDetail = has(q, ["spic", "hot", "mild", "ingredient", "calorie", "shelf", "store", "freez", "frozen", "fridge", "how long", "sugar", "salt", "oil", "kid"]);
     if (items.length && unknownDetail) return null;
+    const wantsRecipe = has(q, ["cook", "make", "prepare", "recipe", "how do i use", "how to use", "instructions", "ideas", "ways", "what can i do", "serve", "use it", "use the"]);
+    if (items.length && wantsRecipe && items[0].it.recipe) {
+      const it = items[0].it;
+      return { text: `${it.name}: ${it.recipe}` + (it.more_ways ? ` More ways to enjoy: ${it.more_ways}.` : ""), actions: ["order"], source: "rules" };
+    }
     if (items.length) {
       const lines = items.slice(0, 3).map(({ cat, it }) =>
-        `Yes, we make ${it.name} (${cat.name}). ${it.notes || cat.how_to_use || cat.what}`);
+        `Yes, we make ${it.name} (${cat.name}). ${it.recipe || it.notes || cat.how_to_use || cat.what}`);
       return { text: lines.join(" ") + " " + O.prices, actions: ["order", "call"], source: "rules" };
     }
 
@@ -75,7 +80,7 @@
     if (has(q, ["menu", "what do you", "what you", "sell", "offer", "products", "have"]))
       return { text: KB.categories.map(c => `${c.name}: ${c.items.map(i => i.name).join(", ")}.`).join(" "), actions: ["order"], source: "rules" };
     if (has(q, ["cook", "make", "prepare", "heat", "how do i use", "how to use", "recipe", "instructions"]))
-      return { text: KB.categories.map(c => `${c.name}: ${c.how_to_use || c.what}`).join(" "), actions: [], source: "rules" };
+      return { text: KB.categories.map(c => `${c.name}: ${c.how_to_use || c.what}`).join(" ") + " Ask about any sauce by name for its recipe, e.g. \"how do I cook the butter masala?\"", actions: [], source: "rules" };
     if (/^(hi|hello|hey|namaste|good (morning|afternoon|evening))\b/.test(q))
       return { text: "Hi! Ask me about our dinners, how to order, pickup and delivery, or the farmers market.", actions: [], source: "rules" };
     return null;

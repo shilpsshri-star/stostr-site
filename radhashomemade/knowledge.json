@@ -1,5 +1,5 @@
 {
-  "_about": "Single source of truth for the Radha's Homemade Q&A assistant. The assistant may only say what is in this file. Update this file when the menu, ordering or events change.",
+  "_about": "Single source of truth for the Radha's Homemade Q&A assistant. The assistant may only say what is in this file. Update this file when the menu, ordering or events change. Recipes and 'more ways' come from the product labels (Oct 2026).",
   "business": {
     "name": "Radha's Homemade (Radha's Kitchen)",
     "tagline": "15-minute dinners from family recipes and real spices. Homemade, small batch, no preservatives.",
@@ -17,7 +17,12 @@
     "hours": "There are no fixed shop hours. Call or text to arrange a pickup time."
   },
   "events": [
-    { "name": "Old Katy Farmers Market", "date": "2026-10-10", "when": "Saturday 10 October, 9 am to 1 pm", "details": "Samples of Butter Masala, Spinach Masala and Chickpea Masala." }
+    {
+      "name": "Old Katy Farmers Market",
+      "date": "2026-10-10",
+      "when": "Saturday 10 October, 9 am to 1 pm",
+      "details": "Samples of Butter Masala, Spinach Masala and Chickpea Masala."
+    }
   ],
   "categories": [
     {
@@ -25,50 +30,222 @@
       "what": "Fully cooked curry sauces in 16 oz pouches. Vegetarian sauces: just add your protein or veggies.",
       "how_to_use": "Brown your protein or veggies, pour in the sauce with a splash of water, and simmer for about 10 minutes.",
       "items": [
-        { "name": "Butter Masala", "aliases": ["butter chicken", "butter sauce", "makhani"], "notes": "For butter chicken: brown the chicken, add the sauce with a cup of water and a cup of cream, and simmer for 10 minutes. Also works as a pizza base, pasta sauce, for wings or in sandwiches." },
-        { "name": "Curry Masala", "aliases": ["curry sauce"] },
-        { "name": "Chickpea Masala", "aliases": ["chole sauce"] },
-        { "name": "Spinach Masala", "aliases": ["palak", "saag", "spinach sauce"] },
-        { "name": "Eggplant Masala", "aliases": ["baingan", "brinjal"] },
-        { "name": "Meat Masala", "aliases": ["meat curry", "mutton", "lamb", "goat"] },
-        { "name": "Fish Masala with tamarind", "aliases": ["fish curry", "fish sauce", "tamarind"] }
+        {
+          "name": "Butter Masala",
+          "aliases": [
+            "butter chicken",
+            "butter sauce",
+            "makhani"
+          ],
+          "notes": "For butter chicken: brown the chicken, add the sauce with a cup of water and a cup of cream, and simmer for 10 minutes. Also works as a pizza base, pasta sauce, for wings or in sandwiches.",
+          "recipe": "Easy Butter Chicken (3 lb chicken): cook the chicken with 3 tbsp butter, add the full packet + 1 cup water + 1 cup cream, simmer 2–3 minutes, adjust salt and serve.",
+          "more_ways": "pizza base, pasta sauce, wings, sandwiches"
+        },
+        {
+          "name": "Curry Masala Paste",
+          "aliases": [
+            "curry sauce",
+            "curry masala"
+          ],
+          "recipe": "Easy Chicken Curry (4 lb chicken): add the paste to the chicken and cook until done, add up to 1 cup water for your consistency, adjust salt, and serve with rice or naan.",
+          "more_ways": "vegetable curry, marinate and air-fry wings, shrimp coconut curry"
+        },
+        {
+          "name": "Chana Masala Sauce",
+          "aliases": [
+            "chole sauce",
+            "chickpea masala",
+            "chickpea sauce"
+          ],
+          "recipe": "Easy Chana Curry (full packet + 52 oz chickpeas): drain and rinse the chickpeas, add them with the sauce and up to 1 cup water, simmer 5 minutes, then adjust water and salt.",
+          "more_ways": "vegetable curry, chana bowls, wraps, rice bowls"
+        },
+        {
+          "name": "Spinach Masala Sauce",
+          "aliases": [
+            "palak",
+            "saag",
+            "spinach sauce",
+            "spinach masala"
+          ],
+          "recipe": "Easy Spinach Paneer (2 lb paneer): add paneer cubes + 1 cup water + 1 cup cream to the sauce, simmer 4–5 minutes until heated through, adjust salt, and add green chilies for extra heat.",
+          "more_ways": "pizza base, pasta sauce, sandwich spread, easy chicken curry"
+        },
+        {
+          "name": "Peanut Sesame Masala Sauce",
+          "aliases": [
+            "baingan",
+            "brinjal",
+            "eggplant masala",
+            "eggplant",
+            "peanut sesame"
+          ],
+          "recipe": "Easy Eggplant Curry (full packet + 2 large eggplants): cut the eggplants into wedges and sauté in 3 tbsp oil until lightly browned, add the sauce + 1 cup water, cover and simmer until tender, then adjust salt.",
+          "more_ways": "bell pepper curry, cauliflower curry, mixed vegetable curry"
+        },
+        {
+          "name": "Meat Masala Sauce",
+          "aliases": [
+            "meat curry",
+            "mutton",
+            "lamb",
+            "goat",
+            "meat masala"
+          ],
+          "recipe": "Easy Meat Masala Curry (4 lb meat): add the meat + sauce + 1 cup water, cook until the meat is tender and fully cooked, adding water as needed, then adjust salt and serve with rice or naan.",
+          "more_ways": "goat, lamb or beef curry, meat and potato curry"
+        },
+        {
+          "name": "Fish Masala Sauce",
+          "aliases": [
+            "fish curry",
+            "fish sauce",
+            "tamarind",
+            "fish masala with tamarind",
+            "fish masala"
+          ],
+          "recipe": "Easy Fish Masala Curry (full packet + 3 lb fish): bring the sauce + 1 cup water to a simmer in a wide pan, add the fish and cook gently until fully cooked, then adjust water and salt.",
+          "more_ways": "egg curry, shrimp curry, seafood stew, fish tacos"
+        }
       ]
     },
     {
       "name": "Lentil Curries",
       "what": "Ready to eat. Thaw and serve, or add water for a hearty lentil soup.",
       "items": [
-        { "name": "Five-Lentil Dal", "aliases": ["dal", "daal", "lentil", "lentils", "panchmel"] },
-        { "name": "Kidney Beans Masala", "aliases": ["rajma", "kidney beans", "kidney bean"], "notes": "Fully cooked: warm it in a pot for a few minutes and pour it over rice." },
-        { "name": "Chana Masala", "aliases": ["chana", "chickpeas", "chickpea curry", "chole"] }
+        {
+          "name": "Five-Lentil Dal",
+          "aliases": [
+            "dal",
+            "daal",
+            "lentil",
+            "lentils",
+            "panchmel"
+          ],
+          "recipe": "Ready to eat: thaw, heat and serve. Add water for a hearty lentil soup.",
+          "more_ways": "rice or quinoa, roti or naan, add vegetables"
+        },
+        {
+          "name": "Kidney Beans Masala",
+          "aliases": [
+            "rajma",
+            "kidney beans",
+            "kidney bean"
+          ],
+          "notes": "Fully cooked: warm it in a pot for a few minutes and pour it over rice.",
+          "recipe": "Ready to eat: thaw, heat and serve. Add water for a hearty soup.",
+          "more_ways": "rice or quinoa, roti or naan, burrito bowl"
+        },
+        {
+          "name": "Chana Masala Curry",
+          "aliases": [
+            "chana",
+            "chickpeas",
+            "chickpea curry",
+            "chole",
+            "chana masala"
+          ],
+          "recipe": "Ready to eat: thaw, heat and serve. Add water for your consistency.",
+          "more_ways": "rice, roti or naan, chana bowls, wraps"
+        }
       ]
     },
     {
       "name": "Rice Mixes",
       "what": "Savory Indian rice mix. Add water and cook for about 12 minutes.",
       "items": [
-        { "name": "Cumin-Spiced Rice", "aliases": ["jeera rice", "cumin rice"] },
-        { "name": "Turmeric Coconut Rice", "aliases": ["coconut rice", "turmeric rice"] }
+        {
+          "name": "Cumin-Spiced Rice",
+          "aliases": [
+            "jeera rice",
+            "cumin rice"
+          ]
+        },
+        {
+          "name": "Turmeric Coconut Rice",
+          "aliases": [
+            "coconut rice",
+            "turmeric rice"
+          ]
+        }
       ]
     },
     {
       "name": "Chutneys & Patties",
       "what": "Savory and ready to eat.",
       "items": [
-        { "name": "Tomato Peanut Chutney", "aliases": ["peanut chutney", "tomato chutney"] },
-        { "name": "Cilantro Coconut Chutney", "aliases": ["coconut chutney", "cilantro chutney", "green chutney"] },
-        { "name": "Chipotle Black Bean Patties", "aliases": ["black bean", "patties", "patty", "burger"] }
+        {
+          "name": "Tomato Peanut Chutney",
+          "aliases": [
+            "peanut chutney",
+            "tomato chutney"
+          ],
+          "recipe": "Ready to eat: thaw and serve.",
+          "more_ways": "sandwich spread, dipping sauce, idli and dosa, rice"
+        },
+        {
+          "name": "Cilantro Coconut Chutney",
+          "aliases": [
+            "coconut chutney",
+            "cilantro chutney",
+            "green chutney"
+          ],
+          "recipe": "Ready to eat: thaw and serve.",
+          "more_ways": "dipping sauce, sandwich spread, rice bowls, idli and dosa, grilled chicken"
+        },
+        {
+          "name": "Chipotle Black Bean Patties",
+          "aliases": [
+            "black bean",
+            "patties",
+            "patty",
+            "burger"
+          ]
+        }
       ]
     },
     {
       "name": "Snacks & Drinks",
       "what": "Crispy, savory and ready to eat.",
       "items": [
-        { "name": "Protein Bites", "aliases": ["protein", "dates", "energy bites"], "notes": "Made with nuts and dates." },
-        { "name": "Mixture", "aliases": ["namkeen", "chivda"] },
-        { "name": "Lentil Ribbon Chips", "aliases": ["ribbon", "chips", "ribbon pakoda"] },
-        { "name": "Potato Samosa", "aliases": ["samosa", "samosas"] },
-        { "name": "Mango Lassi", "aliases": ["lassi", "mango"] }
+        {
+          "name": "Protein Bites",
+          "aliases": [
+            "protein",
+            "dates",
+            "energy bites"
+          ],
+          "notes": "Made with nuts and dates."
+        },
+        {
+          "name": "Mixture",
+          "aliases": [
+            "namkeen",
+            "chivda"
+          ]
+        },
+        {
+          "name": "Lentil Ribbon Chips",
+          "aliases": [
+            "ribbon",
+            "chips",
+            "ribbon pakoda"
+          ]
+        },
+        {
+          "name": "Potato Samosa",
+          "aliases": [
+            "samosa",
+            "samosas"
+          ]
+        },
+        {
+          "name": "Mango Lassi",
+          "aliases": [
+            "lassi",
+            "mango"
+          ]
+        }
       ]
     }
   ],
