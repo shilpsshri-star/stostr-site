@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>stostr Work</title>
+<meta name="description" content="Case studies from small businesses: what was set up, and what's happened since.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/stostr.css">
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/stostr-logo.jpg" alt=""><span>st<span class="o">ostr</span></span></a>
+    <nav aria-label="Main">
+      <a href="/services">Services</a>
+      <a href="/work" aria-current="page">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Work</p>
+      <h1>Case studies</h1>
+      <p class="lede">Live projects for real small businesses. Each one shows the problem, what was set up, and the numbers since, published straight from the business's own tracker.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cards">
+        <a class="card" href="/work/radhas-kitchen">
+          <span class="kind">Homemade food · Katy, TX</span>
+          <h3>Radha's Kitchen</h3>
+          <p>A home kitchen posting online without knowing whether it brought orders. Now: a weekly post plan, a clean ordering page with a question assistant, and Instagram and Facebook numbers tracked automatically every morning.</p>
+          <span class="result">Live dashboard · weekly experiments</span>
+          <span class="more">Read the case study →</span>
+        </a>
+        <a class="card" href="/work/mira-studio">
+          <span class="kind">Design studio · Online shop</span>
+          <h3>Made With Mira Studio</h3>
+          <p>A new shop with zero views. Listings rewritten for search, a two-market post plan, and a growth loop that tests one change at a time and keeps only what works.</p>
+          <span class="result">Live dashboard · experiment log</span>
+          <span class="more">Read the case study →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pattis">
+    <div class="wrap">
+      <p class="eyebrow">Custom tool · Handmade seller</p>
+      <h2 style="font-size:clamp(1.5rem,3.2vw,2rem);margin-bottom:10px">Patti's Little Studio: a listing manager</h2>
+      <div class="story" style="margin-top:20px">
+        <div><h3>The problem</h3><p>Writing a good online listing (title, 13 search tags, description, materials, colours and photo text) took far longer than making the product.</p></div>
+        <div><h3>What we built</h3><p>A private web app: upload a product photo, get a complete draft listing to review and edit, then send it to the shop as a draft. Nothing goes live without the owner's approval.</p></div>
+        <div><h3>Where it is now</h3><p>Deployed and in daily use. Walkthroughs on request.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h2>Want this for your business?</h2>
+          <p>Every project starts with a free 20-minute ops check. Email me a line about your business and I'll reply the same day.</p>
+        </div>
+        <div style="display:grid;gap:12px">
+          <div class="email"><span id="em">stostr.team@gmail.com</span><button type="button" id="copy">Copy</button></div>
+          <a class="btn btn-primary" href="mailto:stostr.team@gmail.com?subject=Free%20ops%20check">Email me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© stostr · small business ops &amp; setup</span>
+    <span class="tag">Speed to onboard is speed to revenue</span>
+  </div>
+</footer>
+<script>
+document.getElementById("copy").addEventListener("click",function(){
+  var b=this,t=document.getElementById("em").textContent;
+  (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy"},1500)})
+  .catch(function(){var r=document.createRange();r.selectNodeContents(document.getElementById("em"));var s=getSelection();s.removeAllRanges();s.addRange(r);});
+});
+</script>
+</body>
+</html>

@@ -2,79 +2,125 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stostr</title>
-<style>
-  :root{
-    --ink:#EDEEF0;
-    --cover:#2B303B;
-    --gold-1:#FFD84D;
-    --gold-2:#F2A93C;
-    --line:#5A6070;
-    --muted:#B7BBC4;
-    color-scheme:dark;
-  }
-  *{box-sizing:border-box;}
-  html,body{height:100%;}
-  body{
-    margin:0;
-    background:radial-gradient(circle at 50% 32%, #4a5160, var(--cover) 75%);
-    color:var(--ink);
-    font-family:"Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-  }
-  .gold{
-    background:linear-gradient(100deg, var(--gold-1), var(--gold-2));
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-  }
-  .cover{
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-  }
-  .cover img{width:min(140px, 34vw);margin-bottom:22px;}
-  .cover .word{
-    font-family:"Archivo",sans-serif;
-    font-weight:700;
-    font-size:clamp(2.8rem, 11vw, 4.6rem);
-    line-height:1;
-    letter-spacing:-0.01em;
-  }
-  .cover .tagline{
-    font-family:"IBM Plex Mono",monospace;
-    font-size:0.78rem;
-    letter-spacing:0.18em;
-    color:var(--gold-1);
-    text-transform:uppercase;
-    margin-top:12px;
-  }
-  .cover .enter{
-    margin-top:52px;
-    color:var(--ink);
-    text-decoration:none;
-    font-size:0.9rem;
-    font-weight:600;
-    border:1px solid var(--line);
-    padding:12px 26px;
-    border-radius:999px;
-    transition:border-color 0.2s, color 0.2s;
-  }
-  .cover .enter:hover{border-color:var(--gold-2);color:var(--gold-1);}
-</style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Work+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>stostr</title>
+<meta name="description" content="Small business operations and setup: getting found, getting paid, running smoothly, and growing.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/stostr.css">
 </head>
 <body>
-<div class="cover">
-  <img src="/stostr-logo.jpg" alt="stostr logo">
-  <div class="word">st<span class="gold">ostr</span></div>
-  <div class="tagline">Speed to onboard is speed to revenue</div>
-  <a class="enter" href="/services">Enter site →</a>
-</div>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/stostr-logo.jpg" alt=""><span>st<span class="o">ostr</span></span></a>
+    <nav aria-label="Main">
+      <a href="/services">Services</a>
+      <a href="/work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Small business operations &amp; setup</p>
+      <h1>I set up the boring parts of your business so you can <span class="gold-text">sell</span>.</h1>
+      <p class="lede">For small businesses that are great at what they make and stuck on everything around it: getting found, getting paid, and keeping track of what's working.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#contact">Book a free 20-minute ops check</a>
+        <a class="btn btn-ghost" href="/work">See the work</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">What I take off your plate</p>
+      <h2>Four parts of running a small business</h2>
+      <p class="intro">Most owners don't need another app. They need someone to set things up properly once, show them how it works, and make sure it keeps working.</p>
+      <div class="areas">
+        <div class="area"><h3>Get found</h3><p>Online listings, social media that people actually see, and a simple website.</p></div>
+        <div class="area"><h3>Get paid</h3><p>Payments, online ordering, pickup and delivery, invoices.</p></div>
+        <div class="area"><h3>Run smoothly</h3><p>Order and stock trackers, simple tools and automations that save hours each week.</p></div>
+        <div class="area"><h3>Grow</h3><p>Measure what's working, try one change at a time, and keep what brings customers.</p></div>
+      </div>
+      <p style="margin:28px 0 0"><a href="/services" style="font-weight:600">How each one works →</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Recent work</p>
+      <h2>Real businesses, real numbers</h2>
+      <p class="intro">Each project is live and still running. The case studies show what was set up and what's happening since.</p>
+      <div class="cards">
+        <a class="card" href="/work/radhas-kitchen">
+          <span class="kind">Homemade food · Katy, TX</span>
+          <h3>Radha's Kitchen</h3>
+          <p>From weekly social posts to local orders: a content calendar, a customer page with a question-answering assistant, and automatic tracking from Instagram and Facebook.</p>
+          <span class="result">Social reach tracked daily, without anyone copying numbers.</span>
+          <span class="more">Read the case study →</span>
+        </a>
+        <a class="card" href="/work/mira-studio">
+          <span class="kind">Design studio · Etsy</span>
+          <h3>Made With Mira Studio</h3>
+          <p>A brand-new online shop with zero views: listings rewritten for search, a weekly post plan, and a growth loop that tests one change at a time.</p>
+          <span class="result">From zero toward first sales, measured every day.</span>
+          <span class="more">Read the case study →</span>
+        </a>
+        <a class="card" href="/work#pattis">
+          <span class="kind">Handmade seller · Etsy</span>
+          <h3>Patti's Little Studio</h3>
+          <p>A listing tool that turns a product photo into a ready-to-review Etsy listing: title, tags, description and photo text.</p>
+          <span class="result">Deployed and in daily use.</span>
+          <span class="more">Read more →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <h2>Simple from the first call</h2>
+      <ol class="steps" style="margin-top:24px">
+        <li><span class="n">Step 1</span><b>Free 20-minute ops check</b><span class="d">You tell me how the business runs today. I tell you the one or two fixes that would matter most.</span></li>
+        <li><span class="n">Step 2</span><b>A clear plan and a fixed quote</b><span class="d">What I'll set up, what it costs and when it's done. No hourly surprises.</span></li>
+        <li><span class="n">Step 3</span><b>Set up, handed over, kept working</b><span class="d">Everything set up and explained, plus a simple tracker so you can see it working. Monthly upkeep if you want it.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h2>Book a free ops check</h2>
+          <p>Email me a line about your business and what's getting in the way. I reply the same day with a time for a 20-minute call.</p>
+        </div>
+        <div style="display:grid;gap:12px">
+          <div class="email"><span id="em">stostr.team@gmail.com</span><button type="button" id="copy">Copy</button></div>
+          <a class="btn btn-primary" href="mailto:stostr.team@gmail.com?subject=Free%20ops%20check">Email me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© stostr · small business ops &amp; setup</span>
+    <span class="tag">Speed to onboard is speed to revenue</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById("copy").addEventListener("click",function(){
+  var b=this,t=document.getElementById("em").textContent;
+  (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy"},1500)})
+  .catch(function(){var r=document.createRange();r.selectNodeContents(document.getElementById("em"));var s=getSelection();s.removeAllRanges();s.addRange(r);});
+});
+</script>
 </body>
 </html>
