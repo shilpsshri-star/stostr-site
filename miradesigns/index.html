@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Made With Mira Studio</title>
-<meta name="description" content="Made With Mira Studio: posters, social graphics, labels, brand kits and planners, plus a live growth case study from zero to first sales.">
+<title>Made With Mira Studio | 2027 Indian-American Family Calendar</title>
+<meta name="description" content="The 2027 Indian-American Family Calendar: North and South Indian festivals prepared for U.S. Eastern Time, U.S. holidays and family planning. Plus posters, social graphics, labels and brand kits from Made With Mira Studio.">
 <style>
   :root{
     --ink:#1A1220;
@@ -86,6 +86,22 @@
   .small-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
   .small-grid .service{margin:0;}
 
+  /* 2027 calendar showcase */
+  .cal27{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:28px;align-items:start}
+  .cal27 .covers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .cal27 .covers img{border-radius:6px;box-shadow:0 4px 14px rgba(40,20,40,0.14);aspect-ratio:0.71;object-fit:cover;width:100%}
+  .cal27 .covers figcaption{font-size:0.76rem;color:var(--muted);margin-top:6px;text-align:center}
+  .cal27 figure{margin:0}
+  .cal27 ul.feat{margin:14px 0 18px;padding-left:18px;display:grid;gap:6px;color:var(--muted);font-size:0.95rem}
+  .cal27 ul.feat b{color:var(--ink)}
+  .pages{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px;margin-top:22px}
+  .pages img{border-radius:8px;border:1px solid var(--line);width:100%;height:100%;object-fit:cover;object-position:top}
+  .pages figcaption{font-size:0.76rem;color:var(--muted);margin-top:6px}
+  .formats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;padding:0;list-style:none}
+  .formats li{background:var(--chip);border-radius:999px;padding:5px 12px;font-size:0.82rem;font-weight:600}
+  .formats li.soon{background:none;border:1px dashed var(--line);color:var(--muted)}
+  @media (max-width:720px){.cal27{grid-template-columns:1fr}.pages{grid-template-columns:1fr 1fr}}
+
   .steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
   .steps li{display:flex;gap:12px;color:var(--muted);}
   .steps li b{color:var(--ink);}
@@ -122,12 +138,48 @@
     <p class="lede">A brand and design studio for small businesses and families. Posters, social graphics, labels, brand kits and planners, designed in Canva and delivered ready to print or post.</p>
     <div class="ctas">
       <a class="btn primary" href="#contact">Start a project</a>
-      <a class="btn ghost" href="#business">Calendars for businesses</a>
+      <a class="btn ghost" href="#calendar-2027">2027 family calendar</a>
     </div>
   </div>
 </header>
 
 <main class="wrap">
+
+  <section id="calendar-2027">
+    <p class="eyebrow">New for 2027</p>
+    <h2>2027 Indian-American Family Calendar</h2>
+    <p class="intro">Celebrate traditions, plan your year, and share their meaning with the next generation. North and South Indian festivals, U.S. holidays and family planning space, in one calendar.</p>
+    <div class="cal27">
+      <div class="covers">
+        <figure><img src="/miradesigns/img/cal27-cover-classic.jpg" alt="2027 Indian-American Family Calendar cover in classic maroon with a gold diya mandala" loading="lazy"><figcaption>Classic</figcaption></figure>
+        <figure><img src="/miradesigns/img/cal27-cover-blush.jpg" alt="2027 Indian-American Family Calendar cover in blush rose" loading="lazy"><figcaption>Blush</figcaption></figure>
+        <figure><img src="/miradesigns/img/cal27-cover-midnight.jpg" alt="2027 Indian-American Family Calendar cover in midnight navy" loading="lazy"><figcaption>Midnight</figcaption></figure>
+      </div>
+      <div>
+        <ul class="feat">
+          <li><b>Festival dates prepared for U.S. Eastern Time</b>, North and South Indian, from Lohri and Pongal to Diwali.</li>
+          <li><b>U.S. holidays</b> alongside, so school days and family plans sit on one page.</li>
+          <li><b>Room to plan</b>: birthdays, school and activities, appointments and notes on every month.</li>
+          <li><b>A year at a glance</b> and a <b>two-page festival guide</b> explaining what each day means.</li>
+        </ul>
+        <ul class="formats" aria-label="Formats">
+          <li>Printable: Letter and 11×17</li>
+          <li>Three cover styles</li>
+          <li class="soon">Printed wall calendar: coming soon</li>
+        </ul>
+        <div class="ctas" style="justify-content:flex-start">
+          <a class="btn primary" href="#contact">Ask about the printable</a>
+          <a class="btn ghost" href="#business">Bulk &amp; business orders</a>
+        </div>
+      </div>
+    </div>
+    <div class="pages">
+      <figure><img src="/miradesigns/img/cal27-january-wall.jpg" alt="January 2027 month page: Lohri, Makar Sankranti, Pongal, Republic Day, New Year's Day and MLK Day, with planning boxes" loading="lazy"><figcaption>January, wall layout</figcaption></figure>
+      <figure><img src="/miradesigns/img/cal27-october.jpg" alt="October 2027 month page with festival dates and planning boxes" loading="lazy"><figcaption>October</figcaption></figure>
+      <figure><img src="/miradesigns/img/cal27-year.jpg" alt="2027 year at a glance with festival days highlighted" loading="lazy"><figcaption>Year at a glance</figcaption></figure>
+      <figure><img src="/miradesigns/img/cal27-festival-guide.jpg" alt="Festival guide page describing each 2027 festival" loading="lazy"><figcaption>Festival guide</figcaption></figure>
+    </div>
+  </section>
 
   <section id="services">
     <p class="eyebrow">What I can design for you</p>
