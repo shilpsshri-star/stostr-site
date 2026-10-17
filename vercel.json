@@ -1,4 +1,16 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/daily",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/daily/:path*",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
 }

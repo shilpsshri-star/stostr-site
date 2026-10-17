@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /integrations/
+
+Sitemap: https://www.stostr.com/sitemap.xml
