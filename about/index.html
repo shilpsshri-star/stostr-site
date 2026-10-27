@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About Shilpa | stostr Small Business Operations</title>
+<meta name="description" content="Shilpa runs stostr from Ashburn, Virginia: 15+ years building fintech and payments products, now setting up the operations side of small and home-based businesses.">
+<link rel="canonical" href="https://www.stostr.com/about">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.stostr.com/about">
+<meta property="og:title" content="About Shilpa | stostr Small Business Operations">
+<meta property="og:description" content="Shilpa runs stostr from Ashburn, Virginia: 15+ years building fintech and payments products, now setting up the operations side of small and home-based businesses.">
+<meta property="og:site_name" content="stostr">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/stostr.css">
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/stostr-logo.jpg" alt=""><span>st<span class="o">ostr</span></span></a>
+    <nav aria-label="Main">
+      <a href="/work">Work</a>
+      <a href="/services">Services</a>
+      <a href="/about" aria-current="page">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap about-hero">
+      <div class="avatar" aria-hidden="true">S</div>
+      <div>
+        <p class="eyebrow">About</p>
+        <h1>Hi, I'm Shilpa. I help small businesses run like bigger ones.</h1>
+        <p class="lede">Founder of stostr · Ashburn, Virginia · working with small and home-based businesses across the U.S.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap"><div class="prose">
+      <p class="eyebrow">My story</p>
+      <h2 style="font-size:clamp(1.5rem,3.2vw,2rem);margin-bottom:16px">Why stostr exists</h2>
+      <p>For more than 15 years I built digital products for fintech and corporate payments companies: the systems that make sure orders go through, money lands in the right place and people can see what's happening. Most recently I led AI product and go-to-market work at Framez AI.</p>
+      <p>Along the way I kept meeting small business owners who were brilliant at what they make and buried in everything around it. A home cook with customers asking the same five questions every day. A designer with beautiful products and an Etsy shop nobody could find. They didn't need another app. They needed someone to set things up properly, once.</p>
+      <p><b>That's what stostr does.</b> I set up the boring parts (listings, payments, ordering, trackers) so you can get back to the work you love, and I stay close enough to make sure it keeps working.</p>
+    </div></div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Background</p>
+      <h2>What I bring to your business</h2>
+      <div class="facts">
+        <div class="fact"><b>15+ years</b><span>building digital products in fintech and corporate payments</span></div>
+        <div class="fact"><b>MBA, UVA Darden</b><span>project management and operations</span></div>
+        <div class="fact"><b>Product Management, Cornell</b><span>certificate</span></div>
+        <div class="fact"><b>3 live clients</b><span>food, design and handmade businesses, <a href="/work">see the work</a></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">How I work</p>
+      <h2>What you can expect</h2>
+      <ul class="values" style="margin-top:20px">
+        <li><b>Plain English.</b> No jargon, no 40-page plans. You'll know what I'm setting up and why.</li>
+        <li><b>A fixed quote before we start.</b> You know the cost and the finish date up front.</li>
+        <li><b>Your tools, not more tools.</b> I work with what you already use where I can: Square, Etsy, Google, Instagram.</li>
+        <li><b>Handed over, not hostage.</b> Everything is explained and yours to keep, with optional monthly upkeep.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h2>Start with a free ops check</h2>
+          <p>Email me a line about your business and what's getting in the way. I reply the same day with a time for a 20-minute call.</p>
+        </div>
+        <div style="display:grid;gap:12px">
+          <div class="email"><span id="em">stostr.team@gmail.com</span><button type="button" id="copy">Copy</button></div>
+          <a class="btn btn-primary" href="mailto:stostr.team@gmail.com?subject=Free%20ops%20check">Email me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© stostr · small business ops &amp; setup</span>
+    <span class="tag">Speed to onboard is speed to revenue</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById("copy").addEventListener("click",function(){
+  var b=this,t=document.getElementById("em").textContent;
+  (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy"},1500)})
+  .catch(function(){var r=document.createRange();r.selectNodeContents(document.getElementById("em"));var s=getSelection();s.removeAllRanges();s.addRange(r);});
+});
+</script>
+<script src="/assets/ask-stostr.js" defer></script>
+</body>
+</html>
