@@ -11,6 +11,16 @@
       "source": "/daily/:path*",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/calendar",
+      "destination": "/miradesigns#calendar-2027",
+      "permanent": false
+    },
+    {
+      "source": "/mira",
+      "destination": "/miradesigns",
+      "permanent": false
     }
   ]
 }
