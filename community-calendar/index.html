@@ -74,6 +74,9 @@
   .form .req{color:var(--rose)}
   .form .bad{border-color:var(--rose);box-shadow:0 0 0 2px rgba(201,111,135,.25)}
   .deadline{margin:18px 0 0;font-size:.95rem}
+  nav.cals{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding-block:10px;border-bottom:1px solid var(--line);}
+  nav.cals a{padding:6px 14px;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:.85rem;font-weight:600;background:var(--surface);}
+  nav.cals a.on{background:var(--ink);color:#fff;border-color:var(--ink);}
 </style>
 </head>
 <body>
@@ -81,6 +84,7 @@
   <a href="/miradesigns/">← Mira Design Studio</a>
   <a href="https://www.instagram.com/madewithmirastudio" target="_blank" rel="noopener">@madewithmirastudio</a>
 </nav>
+<nav class="cals wrap" aria-label="2027 calendars"><a href="/community-calendar/" class="on" aria-current="page">Community (HOA)</a><a href="/business-calendar/">Business</a><a href="/indian-festival-calendar/">Indian Festival</a><a href="/custom-calendar/">Custom</a></nav>
 
 <header class="hero">
   <div class="wrap">

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Custom 2027 Calendars | Mira Design Studio</title><meta name="description" content="Custom 2027 calendars with your own photos, celebrations, brand and dates.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap">
+<style>
+:root{--ink:#26313C;--paper:#FBF8F2;--surface:#FFFFFF;--muted:#66717D;--line:#E6DED2;--blue:#4F7397;--tint:#EEF3F8;--maroon:#7A1F33;color-scheme:light;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Open Sans",-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.6;}
+a{color:var(--blue);} img{max-width:100%;display:block;}
+.wrap{max-width:1000px;margin:0 auto;padding-inline:20px;}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;line-height:1.2;text-wrap:balance;margin:0 0 12px;}
+nav.top{display:flex;justify-content:space-between;align-items:center;padding-block:16px;font-size:.85rem;gap:12px;flex-wrap:wrap;}
+nav.top a{color:var(--muted);text-decoration:none;}
+nav.cals{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding-block:10px;border-bottom:1px solid var(--line);}
+nav.cals a{padding:6px 14px;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:.85rem;font-weight:600;background:var(--surface);}
+nav.cals a.on{background:var(--ink);color:#fff;border-color:var(--ink);}
+.hero .wrap{padding-block:52px 44px;text-align:center;}
+.eyebrow{font-weight:700;letter-spacing:.18em;font-size:.78rem;color:var(--blue);text-transform:uppercase;margin:0 0 10px;}
+.hero h1{font-size:clamp(2rem,6vw,3rem);}
+.hero p.lede{max-width:58ch;margin:0 auto 22px;font-size:1.06rem;}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-block;padding:11px 22px;border-radius:999px;font-weight:700;font-size:.92rem;text-decoration:none;}
+.btn.primary{background:var(--ink);color:#fff;} .btn.ghost{border:1.5px solid var(--ink);color:var(--ink);}
+section{padding-block:48px;border-top:1px solid var(--line);}
+.grid{display:grid;gap:20px;}
+@media(min-width:720px){.g2{grid-template-columns:1fr 1fr;}.g3{grid-template-columns:repeat(3,1fr);}}
+figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;}
+figure img{border-radius:8px;width:100%;aspect-ratio:1080/840;object-fit:cover;background:#F1ECE3;}
+figcaption{font-size:.85rem;color:var(--muted);padding-top:8px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;}
+.card h3{font-size:1.15rem;}
+.card img{border-radius:8px;aspect-ratio:1080/840;object-fit:cover;margin-bottom:12px;}
+ul.ticks{padding-left:1.1em;margin:0;} ul.ticks li{margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;background:var(--surface);font-size:.95rem;}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left;} th{background:var(--tint);}
+.note{font-size:.88rem;color:var(--muted);}
+.quote{font-family:"Playfair Display",Georgia,serif;font-size:1.3rem;text-align:center;max-width:40ch;margin:0 auto;}
+.contact{text-align:center;}
+footer{padding-block:28px 44px;color:var(--muted);font-size:.82rem;text-align:center;}
+.hero{background:linear-gradient(120deg,#EEF3F8,#F7E6EB 50%,#F8EADB);}  .form{display:grid;gap:18px;max-width:960px;margin-inline:auto}
+  .form .grid3{display:grid;gap:12px 16px}
+  .form label,.form input,.form select{min-width:0;max-width:100%;width:100%}
+  @media(min-width:640px){.form .grid3{grid-template-columns:1fr 1fr}}
+  @media(min-width:900px){.form .grid3{grid-template-columns:repeat(3,1fr)}.form .span2{grid-column:span 2}}
+  .form details.more{border-top:1px solid var(--line);padding-top:12px}
+  .form summary{cursor:pointer;font-weight:700;margin-bottom:12px}
+  .form details .grid3{margin-bottom:12px}
+  .form .checks{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-bottom:12px}
+  .form .send{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+  .form fieldset{border:0;padding:0;margin:0;display:grid;gap:12px}
+  .form legend{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:1.1rem;margin-bottom:6px}
+  .form .row{display:grid;gap:12px}
+  @media(min-width:640px){.form .row{grid-template-columns:1fr 1fr}}
+  .form label{display:grid;gap:4px;font-size:.9rem;font-weight:600}
+  .form input,.form select,.form textarea{font:inherit;font-weight:400;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+  .form .checks{display:grid;gap:6px}
+  .form .checks label{display:flex;gap:8px;align-items:center;font-weight:400}
+  .form .checks input{width:18px;height:18px}
+  .form .q{margin:4px 0 0;font-weight:600;font-size:.9rem}
+  .form .opt{font-weight:400;color:var(--muted)}
+  .form .hp{position:absolute;left:-9999px}
+  .form button{border:0;cursor:pointer;justify-self:start;font-size:1rem}
+  .form .status{margin:0;font-weight:600}
+  .form .req{color:#C96F87}
+  .form .bad{border-color:#C96F87;box-shadow:0 0 0 2px rgba(201,111,135,.25)}
+</style></head><body>
+<nav class="top wrap"><a href="/miradesigns/">← Mira Design Studio</a><a href="https://www.instagram.com/madewithmirastudio" target="_blank" rel="noopener">@madewithmirastudio</a></nav>
+<nav class="cals wrap" aria-label="2027 calendars"><a href="/community-calendar/">Community (HOA)</a><a href="/business-calendar/">Business</a><a href="/indian-festival-calendar/">Indian Festival</a><a href="/custom-calendar/" class="on">Custom</a></nav>
+<header class="hero"><div class="wrap"><p class="eyebrow">Mira Design Studio · Custom calendars</p><h1>Your pictures, your dates, your celebrations</h1><p class="lede">Start from any of our designs and make it yours: watercolor from your photos, extra festivals, your brand and your size.</p>
+<div class="ctas"><a class="btn primary" href="#request">Request a quote</a><a class="btn ghost" href="#designs">See the designs</a></div></div></header>
+<main>
+<section id="designs"><div class="wrap"><h2>Make any calendar your own</h2><div class="grid g3">
+<div class="card"><h3>Your photos, as watercolor</h3><p>Send photos of your shop, team, neighborhood or events. We turn them into matching watercolor art for the month pages. Each photo can be credited to the person who took it.</p></div>
+<div class="card"><h3>Your celebrations</h3><p>Add Indian festivals, Lunar New Year, Ramadan and Eid, Nowruz, Jewish holidays, or your own community and school dates to any design.</p></div>
+<div class="card"><h3>Photo contest</h3><p>Great for HOAs, schools and studios: residents or members send their favorite photos, and the 12 winners become the year's art.</p></div>
+<div class="card"><h3>Your brand</h3><p>Your colors, fonts, offers and coupons, tips from your expertise, and a QR code to your website or booking page.</p></div>
+<div class="card"><h3>Sizes and pages</h3><p>Standard 8.5 x 11, with larger sizes on request. Extra pages for a year at a glance, notes or important numbers.</p></div>
+<div class="card"><h3>Start from any design</h3><p><a href="/community-calendar/">Community (HOA)</a>, <a href="/business-calendar/">Business</a> or <a href="/indian-festival-calendar/">Indian Festival</a>, then customize.</p></div>
+</div></div></section>
+<section><div class="wrap"><h2>Pricing</h2><p>Customization is quoted to your project. Your own photos turned into watercolor start at <strong>$75</strong> on top of the base calendar price. Tell us what you have in mind and we'll send a quote within one business day.</p></div></section>
+
+<section id="request"><div class="wrap">
+    <h2 style="text-align:center">Tell us about your custom calendar</h2>
+    <p style="text-align:center;max-width:62ch;margin-inline:auto">Six quick questions, about a minute to fill in. We'll follow up with a 15-minute call or an email, whichever you prefer. Logos, photos and other details can come later, and nothing is booked until you approve a quote.</p>
+    <form id="hoa-form" class="card form" novalidate>
+      <div class="grid3">
+        <label><span>Your name <span class="req">*</span></span><input name="Name" required autocomplete="name"></label>
+        <label><span>Email <span class="req">*</span></span><input type="email" name="email" required autocomplete="email"></label>
+        <label><span>Business or group name <span class="req">*</span></span><input name="Business" required autocomplete="organization"></label>
+        <label>About how many calendars?<input name="Quantity" inputmode="numeric" placeholder="e.g. 100"></label>
+        <label>What would you like to customize?<select name="Customize"><option>Our photos, as watercolor</option><option>Our celebrations and dates</option><option>A photo contest</option><option>Our brand, offers and tips</option><option>Not sure yet</option></select></label>
+        <label>How should we follow up?<select name="Follow-up"><option>A quick 15-minute call</option><option>Email is fine</option></select></label>
+      </div>
+      <details class="more">
+        <summary>Add more details <span class="opt">(optional)</span></summary>
+        <div class="grid3">
+          <label>Starting design<select name="Starting design"><option value="">Choose…</option><option>Community (HOA)</option><option>Business</option><option>Indian Festival</option><option>Not sure</option></select></label>
+          <label>Phone<input type="tel" name="Phone" autocomplete="tel"></label>
+          <label>If using your photos, about how many?<input name="Number of photos" inputmode="numeric" placeholder="e.g. 12"></label>
+          <label>When would you like them?<input name="Needed by" placeholder="e.g. before January"></label>
+          <label>Size<select name="Size"><option value="">Choose…</option><option>Standard 8.5 x 11</option><option>Larger</option><option>Not sure</option></select></label>
+          <label>Best times for a call<input name="Call times" placeholder="e.g. weekday evenings"></label>
+          <label class="span2">Anything else?<input name="Notes"></label>
+        </div>
+      </details>
+      <div class="send"><button class="btn primary" type="submit">Send request</button></div>
+      <p class="status" role="status" aria-live="polite"></p>
+    </form>
+    <p class="note" style="text-align:center;margin-top:16px">Prefer email? Write to <a href="mailto:stostr.team@gmail.com">stostr.team@gmail.com</a> or <a href="https://www.instagram.com/madewithmirastudio" target="_blank" rel="noopener">message us on Instagram</a>.</p>
+  </div></section></main>
+<footer>Mira Design Studio · a <a href="/">stostr.com</a> site · Printed locally in Loudoun County</footer><script>
+// Form sends through Web3Forms (https://web3forms.com). Paste the access key emailed to stostr.team@gmail.com below.
+var WEB3FORMS_KEY = "7d2eb228-8a30-415c-acce-6ed53c9ec282";
+document.getElementById("hoa-form").addEventListener("submit",function(e){
+  e.preventDefault();
+  var f=this,st=f.querySelector(".status"),btn=f.querySelector("button");
+  var missing=[].filter.call(f.querySelectorAll("[required]"),function(el){return !el.checkValidity();});
+  f.querySelectorAll(".bad").forEach(function(el){el.classList.remove("bad");});
+  if(missing.length){ missing.forEach(function(el){el.classList.add("bad");}); missing[0].focus();
+    st.textContent="Please fill in your name, a valid email and your business or group name."; return; }
+  var out={},lines=[];
+  new FormData(f).forEach(function(v,k){ if(k.charAt(0)==="_") return; out[k]=out[k]?out[k]+", "+v:v; });
+  Object.keys(out).forEach(function(k){ if(out[k]) lines.push(k+": "+out[k]); });
+  function fallback(){
+    var href="mailto:stostr.team@gmail.com?subject="+encodeURIComponent("Custom 2027 Calendar request: "+(out.Business||""))+"&body="+encodeURIComponent(lines.join("\n"));
+    st.innerHTML='Sorry, the form couldn\'t send just now. <a href="'+href+'">Email these details instead</a>, or write to stostr.team@gmail.com.';
+    btn.disabled=false;
+  }
+  if(!WEB3FORMS_KEY){ fallback(); return; }
+  btn.disabled=true; st.textContent="Sending…";
+  var ctl=new AbortController(), timer=setTimeout(function(){ctl.abort();},15000);
+  var body=Object.assign({access_key:WEB3FORMS_KEY,subject:"New custom 2027 calendar request: "+(out.Business||""),from_name:"stostr.com custom calendar",replyto:out.email},out);
+  fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(body),signal:ctl.signal})
+    .then(function(r){return r.json();})
+    .then(function(j){ clearTimeout(timer); if(j.success){ f.reset(); btn.disabled=false; st.textContent="Thank you! We got your request and will follow up soon."; } else { fallback(); } })
+    .catch(function(){ clearTimeout(timer); fallback(); });
+});
+</script>
+</body></html>

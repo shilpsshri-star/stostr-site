@@ -25,8 +25,28 @@
   ],
   "rewrites": [
     {
-      "source": "/img/:file*",
-      "destination": "/community-calendar/img/:file*"
+      "source": "/img/sample-:f",
+      "destination": "/community-calendar/img/sample-:f"
+    },
+    {
+      "source": "/img/founder.jpg",
+      "destination": "/community-calendar/img/founder.jpg"
+    },
+    {
+      "source": "/img/tip-:f",
+      "destination": "/business-calendar/img/tip-:f"
+    },
+    {
+      "source": "/img/tipcover-:f",
+      "destination": "/business-calendar/img/tipcover-:f"
+    },
+    {
+      "source": "/img/festival-:f",
+      "destination": "/business-calendar/img/festival-:f"
+    },
+    {
+      "source": "/img/page-:f",
+      "destination": "/indian-festival-calendar/img/page-:f"
     }
   ]
 }
