@@ -62,6 +62,7 @@
   .form .hp{position:absolute;left:-9999px}
   .form button{border:0;cursor:pointer;justify-self:start;font-size:1rem}
   .form .status{margin:0;font-weight:600}
+  .deadline{margin:18px 0 0;font-size:.95rem}
 </style>
 </head>
 <body>
@@ -79,6 +80,7 @@
       <a class="btn primary" href="#request">Request your calendar</a>
       <a class="btn ghost" href="#sample">See the sample pages</a>
     </div>
+    <p class="deadline">Order by <strong>November 20</strong> for delivery before the holidays.</p>
   </div>
 </header>
 
@@ -119,9 +121,9 @@
 <section id="pricing">
   <div class="wrap">
     <h2>Pricing</h2>
-    <p>Calendars start at <strong>about $8 each</strong>, plus customization <strong>starting at $199</strong>. The starting price covers your community's name, logo and dates on our watercolor seasons.</p>
+    <p>Calendars start at <strong>$8 each for larger orders (minimum 100)</strong>, plus customization <strong>starting at $199</strong>. The starting price covers your community's name, logo and dates on our watercolor seasons.</p>
     <p>Your own neighborhood pictures turned into watercolor art, a photo contest, extra pages or a larger print run are quoted separately, because each one adds design work. Local sponsors can cover some or all of the cost.</p>
-    <p>Tell us about your community below and we'll set up a call, then send a written quote and timeline.</p>
+    <p>Tell us about your community below and we'll follow up with a quick call or email, then send a written quote and timeline. Order by <strong>November 20</strong> for delivery before the holidays.</p>
   </div>
 </section>
 
@@ -130,7 +132,7 @@
     <h2>How it works</h2>
     <ol class="steps">
       <li><b>Tell us about your community</b> with the short form below. No commitment.</li>
-      <li><b>One-hour planning call.</b> We go through your pictures, dates, sponsors and quantity together, and you see sample pages.</li>
+      <li><b>A 15-minute call, or email if you prefer.</b> We confirm your pictures, dates, sponsors and quantity.</li>
       <li><b>Written quote and timeline</b>, based on what you chose on the call.</li>
       <li><b>Proof and changes.</b> You review the pages and tell us what to adjust.</li>
       <li><b>Print and delivery</b> once you approve. Payment terms are in your quote.</li>
@@ -163,7 +165,7 @@
 <section id="request">
   <div class="wrap">
     <h2>Request your community's calendar</h2>
-    <p>Answer a few questions and we'll email you to set up a one-hour planning call. It takes about two minutes, and nothing is booked until you approve a quote.</p>
+    <p>Answer a few questions and we'll follow up with a quick 15-minute call or email, whichever you prefer. It takes about two minutes, and nothing is booked until you approve a quote.</p>
     <form id="hoa-form" class="card form" action="https://formsubmit.co/stostr.team@gmail.com" method="POST">
       <input type="hidden" name="_subject" value="New 2027 community calendar request">
       <input type="hidden" name="_template" value="table">
@@ -200,7 +202,7 @@
         </div>
         <p class="q">Pictures</p>
         <div class="checks">
-          <label><input type="radio" name="Pictures" value="Studio watercolor seasons" checked> Your watercolor seasons of Northern Virginia</label>
+          <label><input type="radio" name="Pictures" value="Mira's watercolor seasons" checked> Mira's watercolor seasons of Northern Virginia</label>
           <label><input type="radio" name="Pictures" value="Our own neighborhood photos"> Our own neighborhood photos turned into watercolor</label>
           <label><input type="radio" name="Pictures" value="Resident photo contest"> A resident photo contest</label>
           <label><input type="radio" name="Pictures" value="Not sure yet"> Not sure yet</label>
@@ -208,8 +210,9 @@
         <label>If you'd use your own photos, about how many?<input name="Number of photos" inputmode="numeric" placeholder="e.g. 12"></label>
         <label>Local sponsors?<select name="Sponsors"><option>Yes, we have some in mind</option><option>Maybe, we'd like ideas</option><option>No sponsors</option></select></label>
       </fieldset>
-      <fieldset><legend>Planning call</legend>
-        <label>Best days and times for a one-hour call<input name="Call times" placeholder="e.g. weekday evenings after 6"></label>
+      <fieldset><legend>Follow-up</legend>
+        <label>How should we follow up?<select name="Follow-up"><option>A quick 15-minute call</option><option>Email is fine</option></select></label>
+        <label><span>Best days and times for a call <span class="opt">(if you chose a call)</span></span><input name="Call times" placeholder="e.g. weekday evenings after 6"></label>
         <label><span>Anything else? <span class="opt">(optional)</span></span><textarea name="Notes" rows="3"></textarea></label>
       </fieldset>
       <p class="note">Logos and photos can come later: just reply to our email.</p>
@@ -232,7 +235,7 @@ document.getElementById("hoa-form").addEventListener("submit",function(e){
   btn.disabled=true; st.textContent="Sending…";
   fetch("https://formsubmit.co/ajax/stostr.team@gmail.com",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(out)})
     .then(function(r){return r.json();})
-    .then(function(j){ if(j.success==="true"||j.success===true){ f.reset(); st.textContent="Thank you! We got your request and will email you to set up the call."; } else { throw 0; } })
+    .then(function(j){ if(j.success==="true"||j.success===true){ f.reset(); st.textContent="Thank you! We got your request and will follow up soon."; } else { throw 0; } })
     .catch(function(){ st.innerHTML='Sorry, that didn\'t send. Please email <a href="mailto:stostr.team@gmail.com">stostr.team@gmail.com</a>.'; })
     .finally(function(){ btn.disabled=false; });
 });
