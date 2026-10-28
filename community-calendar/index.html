@@ -47,7 +47,16 @@
   .avatar{width:200px;height:200px;border-radius:50%;object-fit:cover;background:var(--tint);border:4px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.08);margin-inline:auto;}
   .contact{text-align:center;}
   footer{padding-block:28px 44px;color:var(--muted);font-size:.82rem;text-align:center;}
-  .form{display:grid;gap:18px;max-width:720px;margin-inline:auto}
+  .form{display:grid;gap:18px;max-width:960px;margin-inline:auto}
+  .form .grid3{display:grid;gap:12px 16px}
+  .form label,.form input,.form select{min-width:0;max-width:100%;width:100%}
+  @media(min-width:640px){.form .grid3{grid-template-columns:1fr 1fr}}
+  @media(min-width:900px){.form .grid3{grid-template-columns:repeat(3,1fr)}.form .span2{grid-column:span 2}}
+  .form details.more{border-top:1px solid var(--line);padding-top:12px}
+  .form summary{cursor:pointer;font-weight:700;margin-bottom:12px}
+  .form details .grid3{margin-bottom:12px}
+  .form .checks{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-bottom:12px}
+  .form .send{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
   .form fieldset{border:0;padding:0;margin:0;display:grid;gap:12px}
   .form legend{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:1.1rem;margin-bottom:6px}
   .form .row{display:grid;gap:12px}
@@ -80,7 +89,7 @@
       <a class="btn primary" href="#request">Request your calendar</a>
       <a class="btn ghost" href="#sample">See the sample pages</a>
     </div>
-    <p class="deadline">Order by <strong>November 20</strong> for delivery before the holidays.</p>
+    <p class="deadline">Now taking orders for 2027, through December 15.</p>
   </div>
 </header>
 
@@ -121,9 +130,10 @@
 <section id="pricing">
   <div class="wrap">
     <h2>Pricing</h2>
+    <p>We're a small local studio, so every calendar is designed for your community, not pulled from a template.</p>
     <p>Calendars start at <strong>$8 each for larger orders (minimum 100)</strong>, plus customization <strong>starting at $199</strong>. The starting price covers your community's name, logo and dates on our watercolor seasons.</p>
     <p>Your own neighborhood pictures turned into watercolor art, a photo contest, extra pages or a larger print run are quoted separately, because each one adds design work. Local sponsors can cover some or all of the cost.</p>
-    <p>Tell us about your community below and we'll follow up with a quick call or email, then send a written quote and timeline. Order by <strong>November 20</strong> for delivery before the holidays.</p>
+    <p>Tell us about your community below and we'll follow up with a quick call or email, then send a written quote and timeline. We take orders through December 15; the earlier you order, the sooner calendars reach your homes.</p>
   </div>
 </section>
 
@@ -165,58 +175,46 @@
 <section id="request">
   <div class="wrap">
     <h2>Request your community's calendar</h2>
-    <p>Answer a few questions and we'll follow up with a quick 15-minute call or email, whichever you prefer. It takes about two minutes, and nothing is booked until you approve a quote.</p>
+    <p>Six quick questions to start the conversation. We'll follow up with a 15-minute call or an email, whichever you prefer, and nothing is booked until you approve a quote.</p>
     <form id="hoa-form" class="card form" action="https://formsubmit.co/stostr.team@gmail.com" method="POST">
       <input type="hidden" name="_subject" value="New 2027 community calendar request">
       <input type="hidden" name="_template" value="table">
       <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <fieldset><legend>About you</legend>
-        <div class="row">
-          <label>Your name<input name="Name" required autocomplete="name"></label>
-          <label>Your role<select name="Role"><option>HOA board member</option><option>Community manager</option><option>Resident</option><option>Other</option></select></label>
-        </div>
-        <div class="row">
-          <label>Email<input type="email" name="email" required autocomplete="email"></label>
-          <label><span>Phone <span class="opt">(optional)</span></span><input type="tel" name="Phone" autocomplete="tel"></label>
-        </div>
-      </fieldset>
-      <fieldset><legend>Your community</legend>
-        <div class="row">
-          <label>Community or HOA name<input name="Community" required></label>
+      <div class="grid3">
+        <label>Your name<input name="Name" required autocomplete="name"></label>
+        <label>Email<input type="email" name="email" required autocomplete="email"></label>
+        <label>Community or HOA name<input name="Community" required></label>
+        <label>About how many homes?<input name="Quantity" inputmode="numeric" placeholder="e.g. 250"></label>
+        <label>Pictures<select name="Pictures"><option>Mira's watercolor seasons</option><option>Our own neighborhood photos</option><option>A resident photo contest</option><option>Not sure yet</option></select></label>
+        <label>How should we follow up?<select name="Follow-up"><option>A quick 15-minute call</option><option>Email is fine</option></select></label>
+      </div>
+      <details class="more">
+        <summary>Add more details <span class="opt">(optional)</span></summary>
+        <div class="grid3">
+          <label>Your role<select name="Role"><option value="">Choose…</option><option>HOA board member</option><option>Community manager</option><option>Resident</option><option>Other</option></select></label>
+          <label>Phone<input type="tel" name="Phone" autocomplete="tel"></label>
           <label>City or area<input name="City" placeholder="e.g. Ashburn"></label>
-        </div>
-        <div class="row">
-          <label>About how many homes or calendars?<input name="Quantity" inputmode="numeric" placeholder="e.g. 250"></label>
           <label>When would you like them?<input name="Needed by" placeholder="e.g. before January"></label>
+          <label>Logo?<select name="Logo"><option value="">Choose…</option><option>Yes, I can send it</option><option>No logo, use our name</option><option>Not sure</option></select></label>
+          <label>Local sponsors?<select name="Sponsors"><option value="">Choose…</option><option>Yes, we have some in mind</option><option>Maybe, we'd like ideas</option><option>No sponsors</option></select></label>
         </div>
-        <label>Do you have a logo?<select name="Logo"><option>Yes, I can send it</option><option>No logo, use our name</option><option>Not sure</option></select></label>
-      </fieldset>
-      <fieldset><legend>What goes in it</legend>
         <p class="q">Dates to include</p>
         <div class="checks">
           <label><input type="checkbox" name="Dates" value="Board meetings"> Board meetings</label>
           <label><input type="checkbox" name="Dates" value="Pool season"> Pool season</label>
-          <label><input type="checkbox" name="Dates" value="Trash and recycling days"> Trash and recycling days</label>
+          <label><input type="checkbox" name="Dates" value="Trash and recycling days"> Trash and recycling</label>
           <label><input type="checkbox" name="Dates" value="Yard sales"> Yard sales</label>
           <label><input type="checkbox" name="Dates" value="Community events"> Community events</label>
         </div>
-        <p class="q">Pictures</p>
-        <div class="checks">
-          <label><input type="radio" name="Pictures" value="Mira's watercolor seasons" checked> Mira's watercolor seasons of Northern Virginia</label>
-          <label><input type="radio" name="Pictures" value="Our own neighborhood photos"> Our own neighborhood photos turned into watercolor</label>
-          <label><input type="radio" name="Pictures" value="Resident photo contest"> A resident photo contest</label>
-          <label><input type="radio" name="Pictures" value="Not sure yet"> Not sure yet</label>
+        <div class="grid3">
+          <label>Best times for a call<input name="Call times" placeholder="e.g. weekday evenings"></label>
+          <label class="span2">Anything else?<input name="Notes"></label>
         </div>
-        <label>If you'd use your own photos, about how many?<input name="Number of photos" inputmode="numeric" placeholder="e.g. 12"></label>
-        <label>Local sponsors?<select name="Sponsors"><option>Yes, we have some in mind</option><option>Maybe, we'd like ideas</option><option>No sponsors</option></select></label>
-      </fieldset>
-      <fieldset><legend>Follow-up</legend>
-        <label>How should we follow up?<select name="Follow-up"><option>A quick 15-minute call</option><option>Email is fine</option></select></label>
-        <label><span>Best days and times for a call <span class="opt">(if you chose a call)</span></span><input name="Call times" placeholder="e.g. weekday evenings after 6"></label>
-        <label><span>Anything else? <span class="opt">(optional)</span></span><textarea name="Notes" rows="3"></textarea></label>
-      </fieldset>
-      <p class="note">Logos and photos can come later: just reply to our email.</p>
-      <button class="btn primary" type="submit">Send request</button>
+      </details>
+      <div class="send">
+        <button class="btn primary" type="submit">Send request</button>
+        <p class="note" style="margin:0">Takes about a minute. Logos and photos can come later by email.</p>
+      </div>
       <p class="status" role="status" aria-live="polite"></p>
     </form>
     <p class="note" style="text-align:center;margin-top:16px">Prefer email? Write to <a href="mailto:stostr.team@gmail.com">stostr.team@gmail.com</a> or <a href="https://www.instagram.com/madewithmirastudio" target="_blank" rel="noopener">message us on Instagram</a>.</p>
