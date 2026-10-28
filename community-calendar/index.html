@@ -176,7 +176,6 @@
     <form id="hoa-form" class="card form" novalidate action="https://formsubmit.co/stostr.team@gmail.com" method="POST">
       <input type="hidden" name="_subject" value="New 2027 community calendar request">
       <input type="hidden" name="_template" value="table">
-      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="grid3">
         <label><span>Your name <span class="req">*</span></span><input name="Name" required autocomplete="name"></label>
         <label><span>Email <span class="req">*</span></span><input type="email" name="email" required autocomplete="email"></label>
@@ -228,9 +227,8 @@ document.getElementById("hoa-form").addEventListener("submit",function(e){
   f.querySelectorAll(".bad").forEach(function(el){el.classList.remove("bad");});
   if(missing.length){ missing.forEach(function(el){el.classList.add("bad");}); missing[0].focus();
     st.textContent="Please fill in your name, a valid email and your community name."; return; }
-  if(f._honey.value) return;
   var data=new FormData(f),out={};
-  data.forEach(function(v,k){out[k]=out[k]?out[k]+", "+v:v;});
+  data.forEach(function(v,k){ out[k]=out[k]?out[k]+", "+v:v;});
   btn.disabled=true; st.textContent="Sending…";
   fetch("https://formsubmit.co/ajax/stostr.team@gmail.com",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(out)})
     .then(function(r){return r.json();})
