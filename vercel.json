@@ -47,6 +47,10 @@
     {
       "source": "/img/page-:f",
       "destination": "/indian-festival-calendar/img/page-:f"
+    },
+    {
+      "source": "/img/a-:f",
+      "destination": "/business-calendar/img/a-:f"
     }
   ]
 }
