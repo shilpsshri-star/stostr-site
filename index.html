@@ -23,10 +23,10 @@
   <div class="wrap">
     <a class="brand" href="/"><img src="/stostr-logo.jpg" alt=""><span>st<span class="o">ostr</span></span></a>
     <nav aria-label="Main">
-      <a href="/work">Work</a>
       <a href="/services">Services</a>
-      <a href="/about">About</a>
       <a href="#contact">Contact</a>
+      <a href="/about">About</a>
+      <a href="/work">Work</a>
     </nav>
   </div>
 </header>
@@ -46,50 +46,72 @@
 
   <section class="section" id="featured">
     <div class="wrap">
-      <p class="eyebrow">Featured client</p>
-      <div class="feature">
-        <div class="feature-art">
-          <img src="/miradesigns/img/cal27-cover-classic.jpg" alt="Made With Mira Studio 2027 Indian-American Family Calendar, classic maroon cover">
-          <img src="/miradesigns/img/cal27-cover-blush.jpg" alt="The same calendar with a blush rose cover">
-          <img src="/miradesigns/img/cal27-cover-midnight.jpg" alt="The same calendar with a midnight navy cover">
+      <div class="car-head">
+        <p class="eyebrow" style="margin:0">Featured clients</p>
+        <div class="car-nav">
+          <button type="button" class="car-btn" data-dir="-1" aria-label="Previous client">←</button>
+          <button type="button" class="car-btn" data-dir="1" aria-label="Next client">→</button>
         </div>
-        <div class="feature-copy">
-          <h2>Made With Mira Studio</h2>
-          <p class="sub">Design studio · festival calendars, planners and custom business calendars</p>
-          <p>Mira makes calendars families actually hang on the wall: North and South Indian festivals, U.S. holidays and room to plan, in one place. Her new 2027 Indian-American Family Calendar is out now, with custom and bulk calendars for businesses.</p>
-          <p class="did"><b>What I set up:</b> the studio page you can visit, Etsy listings rewritten so buyers can find them, a weekly post plan, and a simple tracker that shows what's bringing visitors.</p>
-          <div class="ctas">
-            <a class="btn btn-primary" href="/miradesigns">Visit Made With Mira Studio</a>
-            <a class="btn btn-ghost" href="/work/mira-studio">How we grew it</a>
-          </div>
+      </div>
+      <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Featured clients">
+        <div class="car-track" tabindex="0">
+          <article class="feature slide" aria-roledescription="slide" aria-label="1 of 3: Made With Mira Studio">
+            <div class="feature-art">
+              <img src="/miradesigns/img/cal27-cover-classic.jpg" alt="Made With Mira Studio 2027 Indian-American Family Calendar, classic maroon cover">
+              <img src="/miradesigns/img/cal27-cover-blush.jpg" alt="The same calendar with a blush rose cover">
+              <img src="/miradesigns/img/cal27-cover-midnight.jpg" alt="The same calendar with a midnight navy cover">
+            </div>
+            <div class="feature-copy">
+              <h2>Made With Mira Studio</h2>
+              <p class="sub">Design studio · festival calendars, planners and custom business calendars</p>
+              <p>Mira makes calendars families actually hang on the wall: North and South Indian festivals, U.S. holidays and room to plan, in one place. Her 2027 Indian-American Family Calendar is out now, with custom and bulk calendars for businesses.</p>
+              <p class="did"><b>What I set up:</b> her studio page, Etsy listings rewritten so buyers can find them, a weekly post plan, and a tracker that shows what's bringing visitors.</p>
+              <div class="ctas">
+                <a class="btn btn-primary" href="/miradesigns">Visit Made With Mira Studio</a>
+                <a class="btn btn-ghost" href="/work/mira-studio">How we grew it</a>
+              </div>
+            </div>
+          </article>
+          <article class="feature slide" aria-roledescription="slide" aria-label="2 of 3: Radha's Homemade">
+            <div class="feature-art">
+              <img src="/assets/img/radha-card-butter.jpg" alt="Radha's Homemade recipe card for butter sauce with a QR code to order">
+              <img src="/assets/img/radha-card-chana.jpg" alt="Radha's Homemade recipe card for chana masala sauce">
+              <img src="/assets/img/radha-card-spinach.jpg" alt="Radha's Homemade recipe card for spinach sauce">
+            </div>
+            <div class="feature-copy">
+              <h2>Radha's Homemade</h2>
+              <p class="sub">Home kitchen · Katy, Texas · family-recipe curry sauces</p>
+              <p>Radha turns family recipes into small-batch sauces that make a weeknight dinner in 15 minutes. Customers order online for pickup around Katy.</p>
+              <p class="did"><b>What I set up:</b> her menu and ordering page with a question assistant, recipe cards with QR codes, and daily tracking from Instagram, Facebook and Square.</p>
+              <div class="ctas">
+                <a class="btn btn-primary" href="/radhashomemade">Visit Radha's Homemade</a>
+                <a class="btn btn-ghost" href="/work/radhas-kitchen">How we grew it</a>
+              </div>
+            </div>
+          </article>
+          <article class="feature slide" aria-roledescription="slide" aria-label="3 of 3: Patti's Little Studio">
+            <div class="feature-art one">
+              <img src="/services/proof-catalog.jpg" alt="Patti's Little Studio listing manager showing a catalog of handmade crochet scarves">
+            </div>
+            <div class="feature-copy">
+              <h2>Patti's Little Studio</h2>
+              <p class="sub">Handmade seller · crochet scarves, throws and gifts</p>
+              <p>Patti makes the pieces; writing listings for each one took longer than making them. Now she uploads a photo and gets a full draft listing to review.</p>
+              <p class="did"><b>What I set up:</b> a private listing tool that drafts the title, 13 search tags, description and photo text, and sends it to her shop as a draft. Nothing goes live without her OK.</p>
+              <div class="ctas">
+                <a class="btn btn-primary" href="/work#pattis">See how it works</a>
+              </div>
+            </div>
+          </article>
         </div>
+      </div>
+      <div class="car-dots" role="tablist" aria-label="Choose a client">
+        <button type="button" role="tab" aria-label="Made With Mira Studio" aria-selected="true"></button>
+        <button type="button" role="tab" aria-label="Radha's Homemade"></button>
+        <button type="button" role="tab" aria-label="Patti's Little Studio"></button>
       </div>
     </div>
   </section>
-
-  <section class="section" id="clients">
-    <div class="wrap">
-      <p class="eyebrow">More client work</p>
-      <h2>Small businesses I work with</h2>
-      <p class="intro">Each one is live and still running. Visit them the way their customers do.</p>
-      <div class="cards">
-        <a class="card" href="/radhashomemade">
-          <span class="kind">Homemade food · Katy, TX</span>
-          <h3>Radha's Homemade</h3>
-          <p>Family-recipe curry sauces and 15-minute dinners. I built the menu and ordering page, recipe cards with QR codes, and daily tracking from Instagram, Facebook and Square.</p>
-          <span class="more">Visit Radha's page →</span>
-        </a>
-        <a class="card" href="/work#pattis">
-          <span class="kind">Handmade seller · Etsy</span>
-          <h3>Patti's Little Studio</h3>
-          <p>A listing tool that turns a product photo into a ready-to-review Etsy listing: title, tags, description and photo text.</p>
-          <span class="more">Read more →</span>
-        </a>
-      </div>
-      <p style="margin:24px 0 0"><a href="/work" style="font-weight:600">See every case study →</a></p>
-    </div>
-  </section>
-
 
   <section class="section">
     <div class="wrap">
@@ -97,10 +119,14 @@
       <h2>Four parts of running a small business</h2>
       <p class="intro">Most owners don't need another app. They need someone to set things up properly once, show them how it works, and make sure it keeps working.</p>
       <div class="areas">
-        <div class="area"><h3>Get found</h3><p>Online listings, social media that people actually see, and a simple website.</p></div>
-        <div class="area"><h3>Get paid</h3><p>Payments, online ordering, pickup and delivery, invoices.</p></div>
-        <div class="area"><h3>Run smoothly</h3><p>Order and stock trackers, simple tools and automations that save hours each week.</p></div>
-        <div class="area"><h3>Grow</h3><p>Measure what's working, try one change at a time, and keep what brings customers.</p></div>
+        <div class="area"><h3>Get found</h3><p>Online listings, social media that people actually see, and a simple website.</p>
+          <ul><li>Google Business and Etsy listings that show up in search</li><li>A simple site or ordering page that's yours</li><li>A weekly post plan you can keep up with</li></ul></div>
+        <div class="area"><h3>Get paid</h3><p>Payments, online ordering, pickup and delivery, invoices.</p>
+          <ul><li>Square or Etsy checkout set up properly</li><li>Order forms, pickup times and reminders</li><li>Invoices and receipts that go out on their own</li></ul></div>
+        <div class="area"><h3>Run smoothly</h3><p>Order and stock trackers, simple tools and automations that save hours each week.</p>
+          <ul><li>One sheet for orders, stock and customers</li><li>Answers to common customer questions, 24/7</li><li>Repeat chores automated, with you approving</li></ul></div>
+        <div class="area"><h3>Grow</h3><p>Measure what's working, try one change at a time, and keep what brings customers.</p>
+          <ul><li>Your numbers in one place, updated daily</li><li>One small test each week, judged by results</li><li>A Monday note on what changed and why</li></ul></div>
       </div>
       <p style="margin:28px 0 0"><a href="/services" style="font-weight:600">How each one works →</a></p>
     </div>
@@ -121,7 +147,7 @@
   <section class="section">
     <div class="wrap">
       <div class="meet">
-        <div class="avatar" aria-hidden="true">S</div>
+        <div class="avatar"><img src="/assets/img/shilpa.jpg" alt="Shilpa, founder of stostr" width="96" height="96"></div>
         <div>
           <p class="eyebrow">Who you'll work with</p>
           <h2>Hi, I'm Shilpa.</h2>
@@ -189,6 +215,7 @@ document.getElementById("copy").addEventListener("click",function(){
   .catch(function(){var r=document.createRange();r.selectNodeContents(document.getElementById("em"));var s=getSelection();s.removeAllRanges();s.addRange(r);});
 });
 </script>
+<script src="/assets/carousel.js" defer></script>
 <script src="/assets/ask-stostr.js" defer></script>
 </body>
 </html>
