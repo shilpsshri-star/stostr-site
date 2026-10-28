@@ -173,9 +173,7 @@
   <div class="wrap">
     <h2>Request your community's calendar</h2>
     <p>Six quick questions to start the conversation. We'll follow up with a 15-minute call or an email, whichever you prefer, and nothing is booked until you approve a quote.</p>
-    <form id="hoa-form" class="card form" novalidate action="https://formsubmit.co/stostr.team@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="New 2027 community calendar request">
-      <input type="hidden" name="_template" value="table">
+    <form id="hoa-form" class="card form" novalidate>
       <div class="grid3">
         <label><span>Your name <span class="req">*</span></span><input name="Name" required autocomplete="name"></label>
         <label><span>Email <span class="req">*</span></span><input type="email" name="email" required autocomplete="email"></label>
@@ -220,6 +218,8 @@
 
 <footer>Mira Design Studio · a <a href="/">stostr.com</a> site · <a href="https://www.instagram.com/madewithmirastudio" target="_blank" rel="noopener">Instagram</a></footer>
 <script>
+// Form sends through Web3Forms (https://web3forms.com). Paste the access key emailed to stostr.team@gmail.com below.
+var WEB3FORMS_KEY = "";
 document.getElementById("hoa-form").addEventListener("submit",function(e){
   e.preventDefault();
   var f=this,st=f.querySelector(".status"),btn=f.querySelector("button");
@@ -227,14 +227,22 @@ document.getElementById("hoa-form").addEventListener("submit",function(e){
   f.querySelectorAll(".bad").forEach(function(el){el.classList.remove("bad");});
   if(missing.length){ missing.forEach(function(el){el.classList.add("bad");}); missing[0].focus();
     st.textContent="Please fill in your name, a valid email and your community name."; return; }
-  var data=new FormData(f),out={};
-  data.forEach(function(v,k){ out[k]=out[k]?out[k]+", "+v:v;});
+  var out={},lines=[];
+  new FormData(f).forEach(function(v,k){ if(k.charAt(0)==="_") return; out[k]=out[k]?out[k]+", "+v:v; });
+  Object.keys(out).forEach(function(k){ if(out[k]) lines.push(k+": "+out[k]); });
+  function fallback(){
+    var href="mailto:stostr.team@gmail.com?subject="+encodeURIComponent("2027 Community Calendar request: "+(out.Community||""))+"&body="+encodeURIComponent(lines.join("\n"));
+    st.innerHTML='Sorry, the form couldn\'t send just now. <a href="'+href+'">Email these details instead</a>, or write to stostr.team@gmail.com.';
+    btn.disabled=false;
+  }
+  if(!WEB3FORMS_KEY){ fallback(); return; }
   btn.disabled=true; st.textContent="Sending…";
-  fetch("https://formsubmit.co/ajax/stostr.team@gmail.com",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(out)})
+  var ctl=new AbortController(), timer=setTimeout(function(){ctl.abort();},15000);
+  var body=Object.assign({access_key:WEB3FORMS_KEY,subject:"New 2027 community calendar request: "+(out.Community||""),from_name:"stostr.com community calendar",replyto:out.email},out);
+  fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(body),signal:ctl.signal})
     .then(function(r){return r.json();})
-    .then(function(j){ if(j.success==="true"||j.success===true){ f.reset(); st.textContent="Thank you! We got your request and will follow up soon."; } else { throw new Error(j.message||""); } })
-    .catch(function(err){ st.innerHTML="Sorry, that didn't send"+(err&&err.message?" ("+err.message+")":"")+'. Please email <a href="mailto:stostr.team@gmail.com">stostr.team@gmail.com</a>.'; })
-    .finally(function(){ btn.disabled=false; });
+    .then(function(j){ clearTimeout(timer); if(j.success){ f.reset(); btn.disabled=false; st.textContent="Thank you! We got your request and will follow up soon."; } else { fallback(); } })
+    .catch(function(){ clearTimeout(timer); fallback(); });
 });
 </script>
 </body>
