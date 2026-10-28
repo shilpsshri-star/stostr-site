@@ -22,5 +22,11 @@
       "destination": "/miradesigns",
       "permanent": false
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/img/:file*",
+      "destination": "/community-calendar/img/:file*"
+    }
   ]
 }
