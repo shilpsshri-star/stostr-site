@@ -71,6 +71,8 @@
   .form .hp{position:absolute;left:-9999px}
   .form button{border:0;cursor:pointer;justify-self:start;font-size:1rem}
   .form .status{margin:0;font-weight:600}
+  .form .req{color:var(--rose)}
+  .form .bad{border-color:var(--rose);box-shadow:0 0 0 2px rgba(201,111,135,.25)}
   .deadline{margin:18px 0 0;font-size:.95rem}
 </style>
 </head>
@@ -120,10 +122,13 @@
       </ul>
     </div>
     <div class="card">
-      <h3>Local businesses can sponsor it, or order their own</h3>
-      <p>Each month has a "brought to you by" spot, plus a cover sponsor. Businesses that already reach your neighbors (realtors, dentists, restaurants, tutors) can sponsor a month to help cover the cost of your community's calendar.</p>
-      <p>They can also order calendars of their own: the same watercolor seasons with their name on the cover, to hand to their clients.</p>
-      <p>The HOA chooses its sponsors; we place their logos and take care of the design and printing.</p>
+      <h3>Optional customizations: make it memorable</h3>
+      <ul class="ticks">
+        <li>Your own neighborhood photos (the lake, the clubhouse, the town green), painted in watercolor</li>
+        <li>Local sponsors on each month and the cover, to help with the cost. Sponsors can also order calendars of their own for their clients.</li>
+        <li>A resident photo contest, with each month crediting the neighbor who took the picture</li>
+        <li>Extra pages for community news or a welcome note from the board</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -131,10 +136,12 @@
 <section id="pricing">
   <div class="wrap">
     <h2>Pricing</h2>
-    <p>We're a small local studio, so every calendar is designed for your community, not pulled from a template.</p>
-    <p>Calendars start at <strong>$8 each for larger orders (minimum 100)</strong>, plus customization <strong>starting at $199</strong>. The starting price covers your community's name, logo and dates on our watercolor seasons.</p>
-    <p>Your own neighborhood pictures turned into watercolor art, a photo contest, extra pages or a larger print run are quoted separately, because each one adds design work. Local sponsors can cover some or all of the cost.</p>
-    <p>Tell us about your community below and we'll follow up with a quick call or email, then send a written quote and timeline. We take orders through December 15; the earlier you order, the sooner calendars reach your homes.</p>
+    <p>We're a small local studio, so every calendar is designed for your community, not pulled from a template. Your price has two parts:</p>
+    <ul class="ticks">
+      <li><strong>One-time design, from $199.</strong> Your community's name, logo and dates on Mira's watercolor seasons, a proof to review, and your changes.</li>
+      <li><strong>Calendars, priced by quantity.</strong> As low as $8 each for 100 or more. Smaller orders are welcome and cost a little more per calendar.</li>
+    </ul>
+    <p>Optional customizations are added to your quote, and local sponsors can cover some or all of it. Tell us your number of homes and we'll send a written quote with design, printing and delivery spelled out. We take orders through December 15; the earlier you order, the sooner calendars reach your homes.</p>
   </div>
 </section>
 
@@ -148,17 +155,6 @@
       <li><b>Proof and changes.</b> You review the pages and tell us what to adjust.</li>
       <li><b>Print and delivery</b> once you approve. Payment terms are in your quote.</li>
     </ol>
-  </div>
-</section>
-
-<section id="personalize">
-  <div class="wrap">
-    <h2>Make it yours</h2>
-    <div class="grid g3">
-      <div class="card"><h3>Your dates</h3><p>Board meetings, pool season, yard sales, trash and recycling days, community events: printed right on each month.</p></div>
-      <div class="card"><h3>Your pictures</h3><p>Use our watercolor seasons, or send photos of your own neighborhood (the lake, the clubhouse, the town green). We turn them into matching watercolor art.</p></div>
-      <div class="card"><h3>Your neighbors</h3><p>Run a photo contest: residents send their favorite spots, and each month credits the neighbor who took the picture.</p></div>
-    </div>
   </div>
 </section>
 
@@ -177,14 +173,14 @@
   <div class="wrap">
     <h2>Request your community's calendar</h2>
     <p>Six quick questions to start the conversation. We'll follow up with a 15-minute call or an email, whichever you prefer, and nothing is booked until you approve a quote.</p>
-    <form id="hoa-form" class="card form" action="https://formsubmit.co/stostr.team@gmail.com" method="POST">
+    <form id="hoa-form" class="card form" novalidate action="https://formsubmit.co/stostr.team@gmail.com" method="POST">
       <input type="hidden" name="_subject" value="New 2027 community calendar request">
       <input type="hidden" name="_template" value="table">
       <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="grid3">
-        <label>Your name<input name="Name" required autocomplete="name"></label>
-        <label>Email<input type="email" name="email" required autocomplete="email"></label>
-        <label>Community or HOA name<input name="Community" required></label>
+        <label><span>Your name <span class="req">*</span></span><input name="Name" required autocomplete="name"></label>
+        <label><span>Email <span class="req">*</span></span><input type="email" name="email" required autocomplete="email"></label>
+        <label><span>Community or HOA name <span class="req">*</span></span><input name="Community" required></label>
         <label>About how many homes?<input name="Quantity" inputmode="numeric" placeholder="e.g. 250"></label>
         <label>Pictures<select name="Pictures"><option>Mira's watercolor seasons</option><option>Our own neighborhood photos</option><option>A resident photo contest</option><option>Not sure yet</option></select></label>
         <label>How should we follow up?<select name="Follow-up"><option>A quick 15-minute call</option><option>Email is fine</option></select></label>
@@ -228,14 +224,18 @@
 document.getElementById("hoa-form").addEventListener("submit",function(e){
   e.preventDefault();
   var f=this,st=f.querySelector(".status"),btn=f.querySelector("button");
+  var missing=[].filter.call(f.querySelectorAll("[required]"),function(el){return !el.checkValidity();});
+  f.querySelectorAll(".bad").forEach(function(el){el.classList.remove("bad");});
+  if(missing.length){ missing.forEach(function(el){el.classList.add("bad");}); missing[0].focus();
+    st.textContent="Please fill in your name, a valid email and your community name."; return; }
   if(f._honey.value) return;
   var data=new FormData(f),out={};
   data.forEach(function(v,k){out[k]=out[k]?out[k]+", "+v:v;});
   btn.disabled=true; st.textContent="Sending…";
   fetch("https://formsubmit.co/ajax/stostr.team@gmail.com",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(out)})
     .then(function(r){return r.json();})
-    .then(function(j){ if(j.success==="true"||j.success===true){ f.reset(); st.textContent="Thank you! We got your request and will follow up soon."; } else { throw 0; } })
-    .catch(function(){ st.innerHTML='Sorry, that didn\'t send. Please email <a href="mailto:stostr.team@gmail.com">stostr.team@gmail.com</a>.'; })
+    .then(function(j){ if(j.success==="true"||j.success===true){ f.reset(); st.textContent="Thank you! We got your request and will follow up soon."; } else { throw new Error(j.message||""); } })
+    .catch(function(err){ st.innerHTML="Sorry, that didn't send"+(err&&err.message?" ("+err.message+")":"")+'. Please email <a href="mailto:stostr.team@gmail.com">stostr.team@gmail.com</a>.'; })
     .finally(function(){ btn.disabled=false; });
 });
 </script>
