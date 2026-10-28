@@ -43,6 +43,7 @@ footer{padding-block:28px 44px;color:var(--muted);font-size:.82rem;text-align:ce
 .sw.on .dot{box-shadow:0 0 0 3px var(--ink),0 2px 6px rgba(0,0,0,.12)}
 .sw .nm{font-size:.82rem;font-weight:600;text-align:center;line-height:1.2}
 .sw:focus-visible{outline:2px solid var(--blue);outline-offset:4px;border-radius:8px}
+@media(min-width:720px){.cprev{grid-template-columns:repeat(3,1fr)}}
 .cprev figure img{width:100%;height:auto;aspect-ratio:1080/840;object-fit:contain}
   .form{display:grid;gap:18px;max-width:960px;margin-inline:auto}
   .form .grid3{display:grid;gap:12px 16px}
@@ -90,9 +91,10 @@ footer{padding-block:28px 44px;color:var(--muted);font-size:.82rem;text-align:ce
 <button type="button" class="sw" data-c="mehndi-green" data-n="Mehndi Green" aria-pressed="false"><span class="dot" style="background:#2E5E3E"></span><span class="nm">Mehndi Green</span></button>
 <button type="button" class="sw" data-c="ivory-gold" data-n="Ivory & Gold" aria-pressed="false"><span class="dot" style="background:#B8892E"></span><span class="nm">Ivory &amp; Gold</span></button>
 </div>
-<div class="grid g2 cprev">
+<div class="grid cprev">
 <figure><img id="c-cover" src="/indian-festival-calendar/img/colors/festive-red-cover.jpg" alt="Festive Red cover sample" width="1080" height="840"><figcaption>Cover</figcaption></figure>
-<figure><img id="c-oct" src="/indian-festival-calendar/img/colors/festive-red-october.jpg" alt="Festive Red October page sample" width="1080" height="840" loading="lazy"><figcaption>October page</figcaption></figure>
+<figure><img id="c-oct" src="/indian-festival-calendar/img/colors/festive-red-october.jpg" alt="Festive Red October page sample" width="1080" height="840" loading="lazy"><figcaption>Festival page</figcaption></figure>
+<figure><img id="c-grid" src="/indian-festival-calendar/img/colors/festive-red-grid.jpg" alt="Festive Red month grid sample" width="1080" height="840" loading="lazy"><figcaption>Month grid with festival dates</figcaption></figure>
 </div>
 <p class="note">Prefer your own brand colors? Just mention it in the form below.</p>
 </div></section>
@@ -162,11 +164,12 @@ document.getElementById("hoa-form").addEventListener("submit",function(e){
 });
 </script>
 <script>
-(function(){var cov=document.getElementById("c-cover"),oct=document.getElementById("c-oct"),bs=document.querySelectorAll(".sw");
+(function(){var cov=document.getElementById("c-cover"),oct=document.getElementById("c-oct"),grd=document.getElementById("c-grid"),bs=document.querySelectorAll(".sw");
 ["lotus-pink","mehndi-green","ivory-gold"].forEach(function(k){new Image().src="/indian-festival-calendar/img/colors/"+k+"-cover.jpg";});
 bs.forEach(function(b){b.addEventListener("click",function(){var k=b.dataset.c,n=b.dataset.n;
 cov.src="/indian-festival-calendar/img/colors/"+k+"-cover.jpg";cov.alt=n+" cover sample";
 oct.src="/indian-festival-calendar/img/colors/"+k+"-october.jpg";oct.alt=n+" October page sample";
+grd.src="/indian-festival-calendar/img/colors/"+k+"-grid.jpg";grd.alt=n+" month grid sample";
 bs.forEach(function(x){var on=x===b;x.classList.toggle("on",on);x.setAttribute("aria-pressed",on?"true":"false");});});});})();
 </script>
 </body></html>
